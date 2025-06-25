@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import './App.css'
 import { setIsLoggedIn } from './services/temp.slice'
-// import { Home } from './pages/home';
-import { Loading, Login } from './pages/login'
-// import { Header, Menu } from './components/menu';
+import { Home } from './pages/home';
+import { Loading, Login, Recovery, Signup } from './pages/login'
+import { Header, Menu } from './components/menu';
 
 export default function App() {
   const loggedIn = useSelector(state => state.temp?.loggedIn);
@@ -41,6 +41,8 @@ export default function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path='*' element={<Login />} />
+          <Route path='/recovery' element={<Recovery />} />
+          <Route path='/sign_up' element={<Signup />} />
         </Routes>
         <Toaster />
       </Suspense>
@@ -62,9 +64,9 @@ function Screen(props){
   return (
     <Suspense fallback={<Loading />}>
       <Layout style={{minHeight: '100vh', width: '100vw', overflowX: 'scroll'}}>
-        {/* <Menu {...props} /> */}
+        <Menu {...props} />
         <Layout style={{width: '100%'}}>
-          {/* <Header {...props} /> */}
+          <Header {...props} />
           <Outlet />
         </Layout>
       </Layout>

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { API_OTC, API_URL, ebarimt, ebarimt1 } from '../helpers';
+import { API_OTC, API_URL, ebarimt, ebarimt1 } from '../helpers/login.config';
 import { apiLogin } from './login.slice';
 
 const initialState = {

@@ -1,56 +1,87 @@
 :root {
-    --root-color: #ffffff;
-    --back-color: #f2f2f2;
-    --back1-color: #f9f9f9;
-      --text-color: #1a1a1a;
-    --text2-color: #757575;
-    --text3-color: #969696;
-    --text4-color: #b0b0b0;
-    --link-color: #017EBE;
-    --btn-color: #F7A900;
-    --btn-h-color: #de9800;
-    --logo1-color: #a020f0;
-    --logo1-color_dis: #a020f0cc;
-    --logo2-color: #4f12aa;
-    --main-color: #6f0ad2;
-    --tag1-color: #f1defd;
-    --line-color: #eaeaea;
-    --input-color: #f1f1f1;
-    --input1-color: #e0e0e0;
-    --text5-color: #1a1a1a;
-  
-    --danger-color: #e41051;
-      --warning-color: #fcd12a;
-    --success-color: #0cceb5;
-  
-    --success-t-color: #0cceb519;
-    --danger-t-color: #e4105119;
-    --danger1-color: #fce8ee;
-  
-    --icon-color: rgb(158,49,235);
-  
-    --config-color: #4BAF4F;
-    --config-t-color: #4BAF4F20;
-    --config-b-color: #8cc748;
-  
-    --header-height: 50px;
-    --side-width: 72px;
-    --page-padding: 15px;
-    --radius: 5px;
-    --list-h-height: 56px;
-    --pg-height: 32px;
+  --root-color: #ffffff;
+  --danger-color: #e41051;
+  --danger-t-color: #e4105119;
+  --danger1-color: #fce8ee;
+	--warning-color: #fcd12a;
+  --warning-filter: brightness(0) saturate(100%) invert(79%) sepia(96%) saturate(781%) hue-rotate(332deg) brightness(101%) contrast(98%);
+  --success-color: #0cceb5;
+  --success-t-color: #0cceb519;
+  --logo1-color: #003034;
+  --logo1-color_dis: #003034cc;
+  --logo2-color: #808f85;
+	--text-color: #1a1a1a;
+  --text2-color: #757575;
+  --text3-color: #969696;
+  --text4-color: #b0b0b0;
+  --back-color: #f2f2f2;
+  --link-color: #017EBE;
+  --line-color: #eaeaea;
+  --border1-color: #cecece;
+  --config-color: #073838;
+  --config-t-color: #07383820;
+  --config-h-color: #00a652;
+  --title-padding: 20px;
+  --btn-margin: 8px;
+  --page-padding: 15px;
+  --t-btn-height: 36px;
+  --input1-color: #e0e0e0;
+  --input-color: #f1f1f1;
+  --back1-color: #f9f9f9;
+  --tag1-color: #88cfcf;
+  --tag2-color: #137575;
+  --tag3-color: #084a4a;
+  --tag4-color: #556666;
+  --tag2-h-color: #e8f1f1;
+  --list-h-height: 56px;
+  --header1-height: 64px;
+  --pg-height: 32px;
+  --side-width: 72px;
+  --radius: 5px;
+  --empty-icon: 120px;
+  --invt-width: 840px;
+  --empty-width: 560px;
+  --btn-row-height: 46px;
+  --menu-font-size: 13px;
+  --header-font-size: 12px;
+  --button-font-size: 13px;
+  --button1-font-size: 15px;
+  --button2-font-size: 12px;
+  --title-font-size: 15px;
+  --descr-font-size: 14px;
+  --text-font-size: 13px;
+  --sub-font-size: 12px;
+  --link-font-size: 12px;
+  --sub1-font-size: 11px;
+  --modal-title-font-size: 16px;
+  --modal-title1-font-size: 15px;
+  --label-font-size: 11px;
+  --select-font-size: 12px;
+  --table-header-font-size: 11px;
+  --table-cell-font-size: 13px;
+  --picker-label-font-size: 12px;
+  --picker-input-font-size: 13px;
+  --picker-error-font-size: 11px;
+  --empty-font-size: 22px;
+  --title1-font-size: 18px;
+  --icon-font-size: 18px;
+  --badge-font-size: 9px;
+  --amt-font-size: 17px;
+  --bold-font-size: 22px;
+  --card-font-size: 25px;
+  --filter-height: 32px;
+}
+
+@media only screen and (min-width: 740px) {
+  :root {
+    --safe-width: calc(100vw - var(--side-width) - var(--page-padding) * 2);
+    --safe-width1: calc(100vw - var(--side-width) - var(--page-padding) * 2);
   }
-  
-  @media only screen and (min-width: 740px) {
-    :root {
-      --safe-width: calc(100vw - var(--side-width) - var(--page-padding) * 2);
-      --safe-width1: calc(100vw - var(--side-width) - var(--page-padding) * 2);
-    }
+}
+
+@media only screen and (max-width: 740px) {
+  :root {
+    --safe-width: calc(100vw - var(--page-padding) * 2);
+    --safe-width1: calc(100vw - 20px);
   }
-  
-  @media only screen and (max-width: 740px) {
-    :root {
-      --safe-width: calc(100vw - var(--page-padding) * 2);
-      --safe-width1: calc(100vw - 20px);
-    }
-  }
+}

@@ -5,10 +5,10 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 import '../../css/login.css';
-// import { apiLogin, setIsLoggedIn, setLogin } from "../../services";
+import { apiLogin, setIsLoggedIn, setLogin } from "../../services";
 import { header_image } from "../../assets";
-import { LoginInput, LoginPassword, Social } from "../../components/login";
-import { Button, DynamicAIIcon, LoginLanguage} from "../../components/all";
+import { LoginInput, LoginLanguage, LoginPassword, Social } from "../../components/login";
+import { Button, DynamicAIIcon, Error } from "../../components/all";
 
 export function Login(){
   const { t } = useTranslation();
@@ -21,32 +21,32 @@ export function Login(){
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if(webUser?.mail) setEmail({ value: webUser?.mail });
-//     if(toRemember && webUser?.password) setPassword({ value: webUser?.password });
-//     if(toRemember) setChecked(true);
-//     return () => {};
-//   }, []);
+  useEffect(() => {
+    if(webUser?.mail) setEmail({ value: webUser?.mail });
+    if(toRemember && webUser?.password) setPassword({ value: webUser?.password });
+    if(toRemember) setChecked(true);
+    return () => {};
+  }, []);
   
-//   const handleSubmit = async e => {
-//     e?.preventDefault();
-//     setError(null);
-//     if(email?.value && password?.value?.trim()){
-//       setLoading(true);
-//       const response = await dispatch(apiLogin(email?.value, password?.value?.trim()));
-//       if(response?.error) setError(response?.error);
-//       else {
-//         dispatch(setLogin({ toRemember: checked }));
-//         dispatch(setIsLoggedIn(true));
-//         window.sessionStorage.setItem('CREDENTIALS_TOKEN', Date.now());
-//         navigate({ pathname: '/' });
-//       }
-//       setLoading(false);
-//     } else {
-//       if(!email?.value) setEmail({ value: '', error: t('error.not_empty') });
-//       if(!password?.value?.trim()) setPassword({ value: '', error: t('error.not_empty') });
-//     }
-//   }
+  const handleSubmit = async e => {
+    e?.preventDefault();
+    setError(null);
+    if(email?.value && password?.value?.trim()){
+      setLoading(true);
+      const response = await dispatch(apiLogin(email?.value, password?.value?.trim()));
+      if(response?.error) setError(response?.error);
+      else {
+        dispatch(setLogin({ toRemember: checked }));
+        dispatch(setIsLoggedIn(true));
+        window.sessionStorage.setItem('CREDENTIALS_TOKEN', Date.now());
+        navigate({ pathname: '/' });
+      }
+      setLoading(false);
+    } else {
+      if(!email?.value) setEmail({ value: '', error: t('error.not_empty') });
+      if(!password?.value?.trim()) setPassword({ value: '', error: t('error.not_empty') });
+    }
+  }
 
   const onForgot = () => {
     navigate({ pathname: "/recovery", search: createSearchParams({ email: email?.value }).toString()});
@@ -60,7 +60,7 @@ export function Login(){
       <div style={{flex: 1}} />
       <p className='lg_title'>Welcome <span className='lg_title2'>Back</span>!</p>
       <LoginLanguage id='login_language' />
-      <form style={{width: '330px'}}>
+      <form onSubmit={handleSubmit} style={{width: '330px'}}>
         <LoginInput
           className='lg_input_back'
           isLogin={true}
@@ -77,9 +77,10 @@ export function Login(){
           setError={setError}
           isLogin={true}
           color='#fff'
-          text={t('login.password')} />
+          text={t('login.password')}
+          handleEnter={handleSubmit} />
         {error && <Error error={error} id='lg_error' />}
-         <Button
+        <Button
           type='submit'
           loading={loading}
           className='lg_login_btn'

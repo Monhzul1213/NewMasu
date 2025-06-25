@@ -25,7 +25,7 @@ export function LoginLanguage(props){
     {
       key: 'en',
       label: (
-        <div className='menu_language_back' >
+        <div className='menu_language_back'>
           <img src={flag_en} alt='Logo' className='menu_language_logo' />
           <span className='menu_language'>EN</span>
         </div>
