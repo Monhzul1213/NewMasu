@@ -68,11 +68,13 @@ export function LoginLanguage(props){
   return (
     <div className={className ?? 'login_language_back'}>
       <Dropdown menu={{ items, onClick }} trigger={['click']} placement="bottomRight">
+      <div className='language_back'>
         <div className='menu_language_btn'>
           <img src={src?.image} alt='Logo' className='menu_language_logo' />
           <span className='menu_language_link' onClick={e => e.preventDefault()} id={id}>{src?.text}</span>
-          {!fromMenu && <DynamicMDIcon name='MdKeyboardArrowDown' size={20} className='down_icon_back2' />}
         </div>
+        {!fromMenu && <DynamicMDIcon name='MdKeyboardArrowDown' size={20} className='down_icon_back2' />}
+      </div>
       </Dropdown>
     </div>
   );

@@ -470,3 +470,15 @@
 .ant-menu .ant-menu-submenu-disabled .ant-menu-item-icon {
   opacity: 0.4 !important;
 }
+
+.down_icon_back{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  margin: -5px auto 0 auto ;
+  color: var(--text-color);
+}
+.down_icon_back:hover{
+  color: #b44af7;
+}

@@ -14,6 +14,8 @@ export function HomeDashboard(props){
   const [loading, setLoading] = useState(false);
   const [sales, setSales] = useState(null);
   const [salesData, setSalesData] = useState([]);
+  const [remain, setRemain] = useState(null);
+  const [remainData, setRemainData] = useState([]);
   const [ar, setAr] = useState(null);
   const [arData, setArData] = useState([]);
   const [error, setError] = useState(null);
@@ -26,10 +28,12 @@ export function HomeDashboard(props){
 
   useEffect(() => {
     if(tab === 'dashboard'){
-      let date = moment().format('yyyy.MM.DD');
-      let query = '?BeginDate=' + date + '&EndDate=' + date;
+      // let date = moment().format('yyyy.MM.DD');
+      // let query = '?BeginDate=' + date + '&EndDate=' + date;
+      let dates = [moment(), moment()];
+      let query = '?BeginDate=' + dates[0]?.format('yyyy.MM.DD') + '&EndDate=' + dates[1]?.format('yyyy.MM.DD');
       getData(query);
-      // getData1(query);
+      getData1(query);
       getData2(query);
       // getData3();
     }
@@ -41,28 +45,44 @@ export function HomeDashboard(props){
     setLoading(true);
     let api = 'Sales/GetSalesSummary' + query + '&SearchPeriod=H';
     const response = await dispatch(getList(user, token, api));
+    console.log(response);
     if(response?.error) setError(response?.error);
     else {
-      // comment
-      // setCardData(response?.data && response?.data[2]?.sort((a, b) => b.salesPercent - a.salesPercent));
-      let salesQty = 0, salesAmt = 0;//, refund = 0, discount = 0, net = 0, profit = 0;
+      let salesQty = 0, salesAmt = 0, refund = 0, discount = 0, net = 0, profit = 0;
       let graphData = response?.data && response?.data[0];
       graphData?.forEach(item => {
         salesAmt += item?.totalSalesAmt ?? 0;
-    //     refund += item?.totalReturnAmt ?? 0;
-    //     discount += item?.totalDiscAmt ?? 0;
-    //     net += item?.totalSalesAmt- item?.totalReturnAmt - item?.totalDiscAmt?? 0;
-    //     profit += item?.totalProfitAmt ?? 0;
+        refund += item?.totalReturnAmt ?? 0;
+        discount += item?.totalDiscAmt ?? 0;
+        net += item?.totalNetSalesAmt ?? 0;
+        profit += item?.totalProfitAmt ?? 0;
         salesQty += item?.salesQty ?? 0;
         item.label = item.salesDate + ':00';
       });
-    //   setSales({ , refund, discount, net, profit,  });
-      setSales({ salesQty, salesAmt });
+      setSales({ salesQty, salesAmt, refund, discount, net , profit});
       setGraphData(formatData(graphData ?? []));
       setSalesData(response?.data && response?.data[1]);
     }
     setLoading(false);
   }
+
+  const getData1 = async () => {
+    setLoading(true);
+    let api = 'Txn/GetHandQtyDtl' ;
+    let headers = { merchantid: user?.merchantId };
+    const response = await dispatch(getList(user, token, api, null, headers));
+    if(response?.error) setError(response?.error);
+    else {
+      let qty = 0, cost = 0;
+      response?.data?.dtl.forEach(item => {
+          qty += (item?.qty ?? 0);
+          cost += item?.totalCost ?? 0
+      });
+      setRemain({qty, cost});  
+      setRemainData(response?.data?.dtl); 
+    }
+    setLoading(false);
+  };
 
   const getData2 = async query => {
     setError(null);
@@ -94,20 +114,17 @@ export function HomeDashboard(props){
     }
     return newData;
   }
+  console.log(graphData);
 
-  const cardProps = { pgWidth, sales, salesData, ar, arData, setId };
+  const cardProps = { pgWidth, sales, salesData, ar, arData, setId, remain, remainData };
   const chartProps = { pgWidth, sales, graphData };
-  const listProps = { pgWidth };
   
   return (
     <Overlay loading={loading}>
       <div ref={ref} className='hm_back'>
         {error && <Error1 error={error} />}
         <DashboardCard {...cardProps} />
-        <div id={id}>
-          <DashboardChart {...chartProps} />
-          <DashboardList {...listProps} />
-        </div>
+        <DashboardChart {...chartProps} />
       </div>
     </Overlay>
   );

@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { BsFillBarChartFill } from "react-icons/bs";
-import { FaPlus, FaBoxesStacked } from "react-icons/fa6";
 import { FaShoppingBasket } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import { calcWidth } from "../../../helpers";
-import { invoice } from "../../../assets/menu";
 import { DynamicAIIcon, Money } from "../../all";
-import { DetailAr, DetailSales } from "./card";
+import { DetailAr, DetailSales, DetailRemain} from "./card";
 
 export function DashboardCard(props){
-  const { pgWidth, sales, salesData, ar, arData, setId } = props;
+  const { pgWidth, sales, salesData, ar, arData, setId, remain, remainData, order, orderData } = props;
   const { t } = useTranslation();
   const [width, setWidth] = useState(250);
   const [salesVisible, setSalesVisible] = useState(false);
   const [arVisible, setArVisible] = useState(false);
+  const [reVisible, setReVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +28,7 @@ export function DashboardCard(props){
 
   const onClickSales = () => setSalesVisible(true);
   const onClickAr = () => setArVisible(true);
-  const onClickAdd = () => navigate('/invoice/invoice_add');
+  const onClickRemain = () => setReVisible(true);
 
   const cardProps = { width };
 
@@ -38,8 +36,9 @@ export function DashboardCard(props){
     <div className="dash_card_back">
       {salesVisible && <DetailSales visible={salesVisible} setVisible={setSalesVisible} data1={salesData} />}
       {arVisible && <DetailAr visible={arVisible} setVisible={setArVisible} data1={arData} />}
+      {reVisible && <DetailRemain visible={reVisible} setVisible={setReVisible} data1={remainData} />}
       <Card {...cardProps}
-        bgColor='var(--config-h-color)' icon={<BsFillBarChartFill className="dash_card_bg" />}
+        bgColor='var(--config1-color)'
         title={t('home.sales')}
         value={sales?.salesAmt}
         onClick={onClickSales}
@@ -50,22 +49,20 @@ export function DashboardCard(props){
           </div>
         }/>
       <Card {...cardProps}
-        bgColor='var(--tag2-color)' icon={<FaBoxesStacked className="dash_card_bg" />}
-        title={t('home.by_invoice')}
-        value={sales?.invoiceAmt}
-        bottom={
-          <div className='dash_card_row1'>
-            <img src={invoice} className='dash_card_icon1' />
-            <p className='dash_card_text'>{sales?.invoiceCount ?? 0}{t('home.invoice1')}</p>
-          </div>
-        } />
+        bgColor='var(--dash-color)'
+        title={t('home.remain')}
+        value={remain?.qty}
+        onClick={onClickRemain}
+        qty={true}
+        bottom={<p className='dash_card_text'>{<Money value={remain?.cost}/>}</p>}
+        />
       <Card {...cardProps}
         color='var(--text-color)'
-        title={t('home.pending')}
+        title={t('home.sales_order')}
         bottom={
-          <div className='dash_card_row1'>
-            <img src={invoice} className='dash_card_icon1' style={{ filter: 'var(--warning-filter)' }} />
-            <p className='dash_card_text' style={{ color: 'var(--text-color)' }}>{sales?.invoiceCount ?? 0}{t('home.invoice1')}</p>
+          <div className='dash_card_row3' style={{backgroundColor: '#f5e751'}}>
+            <FaShoppingBasket className='dash_card_basket1' />
+            <p className='dash_card_count'>{sales?.salesQty ?? 0}</p>
           </div>
         } />
       <Card {...cardProps}
@@ -78,23 +75,18 @@ export function DashboardCard(props){
             <p className='dash_card_text' style={{ color: 'var(--text-color)' }}><Money value={ar?.totalBeginAmt} /> | {t('home.beg_qty')}</p>
           </div>
         } />
-      <div className='dash_head_back' style={{ width }} id='dash_card_btn' onClick={onClickAdd}>
-        <FaPlus className="dash_card_btn_icon" />
-        <p className="dash_card_btn_text">{t('home.create')}</p>
-      </div>
     </div>
   );
 }
 
 function Card(props){
-  const { width, bgColor, icon, color, title, value, onClick, bottom } = props;
+  const { width, bgColor, color, title, value, onClick, bottom, qty } = props;
 
   return (
     <div className='dash_head_back' style={{ width, backgroundColor: bgColor, borderColor: bgColor ?? 'var(--border1-color)' }}>
-      {icon}
       <p className='dash_head_text1' style={{ color }}>{title}</p>
       <div className='dash_head_col'>
-        <p className='dash_head_text2' style={{ color }}><Money value={value} fontSize={25} /></p>
+        <p className='dash_head_text2' style={{ color }}>{qty ? value ?? 0 : <Money value={value} fontSize={25} />}</p>
         <div className='dash_card_row'>
           {bottom}
           <DynamicAIIcon name='AiFillRightCircle' style={{ color }} className='dash_card_icon2' onClick={onClick} />

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { flexRender } from "@tanstack/react-table";
 
-// import '../../css/table.css';
+import '../../css/table.css';
 import { Sort } from './Sort';
 
 export function TableFooter(props){

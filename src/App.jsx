@@ -54,9 +54,9 @@ export default function App() {
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Screen />}>
-    {/* <Route path='/' element={<Home />} />
+    <Route path='/' element={<Home />} />
     <Route path='*' element={<Home />} />
-    <Route path='/home' element={<Home />} /> */}
+    <Route path='/home' element={<Home />} />
   </Route>
 ));
 

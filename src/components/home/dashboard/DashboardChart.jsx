@@ -32,7 +32,7 @@ export function DashboardChart(props){
     data: graphData,
     dataKey: 'salesDate',
     xFormatter, tickFormatter,
-    tipFormatter: value => [formatNumber(value) + currency, t('report.home_' + tab)],
+    tipFormatter: value => [formatNumber(value) + currency, t('report.' + tab)],
     bars: [{ color: '#4BAF4F', fill: '#4BAF4F55', key: tab }]
   };
 
@@ -40,10 +40,10 @@ export function DashboardChart(props){
     <div className='dash_graph_cont' id={id} style={{ width }}>
       <div className='rr_card_back'>
         <ChartTab label='totalSalesAmt' value={sales?.salesAmt} {...tabProps} />
-        <ChartTab label='invoiceAmt' value={sales?.invoiceAmt} {...tabProps} />
-        <ChartTab label='pending' value={sales?.pending} {...tabProps} />
-        <ChartTab label='pure' value={sales?.pure} {...tabProps} />
-        <ChartTab label='margin' value={sales?.margin} {...tabProps} />
+        <ChartTab label='totalReturnAmt' value={sales?.refund} {...tabProps} />
+        <ChartTab label='totalDiscAmt' value={sales?.discount} {...tabProps} />
+        <ChartTab label='totalNetSalesAmt' value={sales?.net} {...tabProps} />
+        <ChartTab label='totalProfitAmt' value={sales?.profit} {...tabProps} />
       </div>
       <div>
         <div className='rr_graph_header'>

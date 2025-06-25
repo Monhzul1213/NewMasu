@@ -212,7 +212,7 @@ export function Menu(props){
       getItem(t('menu.system_change'), '/system/system_change')
     ])
   ] : [
-    // getItem(t('menu.control'), '/control', <img src={payment} alt='image9' />, null, null, msRole?.webManageItem !== 'Y'),
+    getItem(t('menu.control'), '/control', <img src={home} alt='image9' />, null, null, msRole?.webManageItem !== 'Y'),
     // getItem(t('menu.help'), '/help', <img src={settings} alt='image11' />),
   ];
 

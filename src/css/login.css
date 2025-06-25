@@ -336,8 +336,9 @@ input::-webkit-input-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 18px;
-  color: var(--root-color);
+  height: 16px;
+  color: var(--text-color);
+  margin: 0 auto 0 auto ;
 }
 
 .down_icon_back2:hover{

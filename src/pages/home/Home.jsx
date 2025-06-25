@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
 
-// import '../../css/home.css';
+import '../../css/home.css';
 import { getList } from "../../services";
 import { HomeTabs } from '../../components/home';
 import { HomeDashboard } from "./HomeDashboard";
