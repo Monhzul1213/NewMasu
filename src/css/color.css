@@ -1,0 +1,56 @@
+:root {
+    --root-color: #ffffff;
+    --back-color: #f2f2f2;
+    --back1-color: #f9f9f9;
+      --text-color: #1a1a1a;
+    --text2-color: #757575;
+    --text3-color: #969696;
+    --text4-color: #b0b0b0;
+    --link-color: #017EBE;
+    --btn-color: #F7A900;
+    --btn-h-color: #de9800;
+    --logo1-color: #a020f0;
+    --logo1-color_dis: #a020f0cc;
+    --logo2-color: #4f12aa;
+    --main-color: #6f0ad2;
+    --tag1-color: #f1defd;
+    --line-color: #eaeaea;
+    --input-color: #f1f1f1;
+    --input1-color: #e0e0e0;
+    --text5-color: #1a1a1a;
+  
+    --danger-color: #e41051;
+      --warning-color: #fcd12a;
+    --success-color: #0cceb5;
+  
+    --success-t-color: #0cceb519;
+    --danger-t-color: #e4105119;
+    --danger1-color: #fce8ee;
+  
+    --icon-color: rgb(158,49,235);
+  
+    --config-color: #4BAF4F;
+    --config-t-color: #4BAF4F20;
+    --config-b-color: #8cc748;
+  
+    --header-height: 50px;
+    --side-width: 72px;
+    --page-padding: 15px;
+    --radius: 5px;
+    --list-h-height: 56px;
+    --pg-height: 32px;
+  }
+  
+  @media only screen and (min-width: 740px) {
+    :root {
+      --safe-width: calc(100vw - var(--side-width) - var(--page-padding) * 2);
+      --safe-width1: calc(100vw - var(--side-width) - var(--page-padding) * 2);
+    }
+  }
+  
+  @media only screen and (max-width: 740px) {
+    :root {
+      --safe-width: calc(100vw - var(--page-padding) * 2);
+      --safe-width1: calc(100vw - 20px);
+    }
+  }
