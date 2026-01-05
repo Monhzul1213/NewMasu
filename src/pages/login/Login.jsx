@@ -39,7 +39,8 @@ export function Login(){
         dispatch(setLogin({ toRemember: checked }));
         dispatch(setIsLoggedIn(true));
         window.sessionStorage.setItem('CREDENTIALS_TOKEN', Date.now());
-        navigate({ pathname: '/' });
+       navigate({ pathname: response?.isAdmin ? '/system/invoice' : ((response?.msMerchant?.merchantType === 0 || response?.msMerchant?.adsType === null) ? '/profile' : 
+        response?.webViewVerisionDate !== lastItem?.verisionDate ? '/control/lastUpdate' :(response?.viewReport ? '/control/review' : '/config'))});
       }
       setLoading(false);
     } else {

@@ -1,80 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Dropdown } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { flag_cn, flag_en, flag_gr, flag_kr, flag_mn } from "../../assets/flags";
-import { DynamicMDIcon } from "../all";
-
 export function LoginLanguage(props){
-  const { id, className, fromMenu } = props;
+  const { id, className } = props;
   const { i18n } = useTranslation();
-  const [src, setSrc] = useState({ image: flag_mn });
 
-  useEffect(() => {
-    if(i18n?.language === 'kr') setSrc({ image: flag_kr, text: 'KO' });
-    else if(i18n?.language === 'en') setSrc({ image: flag_en, text: 'EN' });
-    else if(i18n?.language === 'cn') setSrc({ image: flag_cn, text: 'ZH' });
-    else if(i18n?.language === 'gr') setSrc({ image: flag_gr, text: 'DE' });
-    else setSrc({ image: flag_mn, text: 'MN' });
-    return () => {};
-  }, [i18n?.language]);
 
   const onClick = ({ key }) => i18n.changeLanguage(key);
 
-  const items = [
-    {
-      key: 'en',
-      label: (
-        <div className='menu_language_back'>
-          <img src={flag_en} alt='Logo' className='menu_language_logo' />
-          <span className='menu_language'>EN</span>
-        </div>
-      )
-    }, {
-      key: 'mn',
-      label: (
-        <div className='menu_language_back'>
-          <img src={flag_mn} alt='Logo' className='menu_language_logo'/>
-          <span className='menu_language'>МN</span>
-        </div>
-      )
-    }, {
-      key: 'kr',
-      label: (
-        <div className='menu_language_back'>
-          <img src={flag_kr} alt='Logo' className='menu_language_logo'/>
-          <span className='menu_language'>KO</span>
-        </div>
-      )
-    }, {
-      key: 'cn',
-      label: (
-        <div className='menu_language_back'>
-          <img src={flag_cn} alt='Logo' className='menu_language_logo'/>
-          <span className='menu_language'>ZH</span>
-        </div>
-      )
-    }, {
-      key: 'gr',
-      label: (
-        <div className='menu_language_back'>
-          <img src={flag_gr} alt='Logo' className='menu_language_logo'/>
-          <span className='menu_language'>DE</span>
-        </div>
-      )
-    }
+  const languageList = [
+    { key: 'mn', label: 'Mongolian', lang: 'МОН' },
+    { key: 'en', label: 'English', lang: 'ENG' },
+    { key: 'jp', label: 'Japanese', lang: '日本語' },
+    { key: 'kr', label: 'Korean', lang: '한국어' },
+    { key: 'cn', label: 'Chinese', lang: '中文' },
+    { key: 'gr', label: 'German', lang: 'DEU' }
   ];
+
+  const items = languageList.map(item => ({
+    key: item?.key,
+    label: (
+      <div className="menu_language_back2">
+        <span
+          className="menu_language"
+          style={{ width: 30, fontSize: 10, marginTop: 2, textAlign: "center" }}
+        >
+          {item?.lang}
+        </span>
+        <p style={{ margin: 0 }}>-</p>
+        <span className="menu_language">{item?.label}</span>
+      </div>
+    )
+  }));
+
+  const currentLabel =
+    i18n.language === 'mn' ? 'MОН' :
+    i18n.language === 'en' ? 'ENG' :
+    i18n.language === 'kr' ? '한국어' :
+    i18n.language === 'cn' ? '中文' :
+    i18n.language === 'gr' ? 'DEU' :
+    '日本語';
 
   return (
     <div className={className ?? 'login_language_back'}>
       <Dropdown menu={{ items, onClick }} trigger={['click']} placement="bottomRight">
-      <div className='language_back'>
         <div className='menu_language_btn'>
-          <img src={src?.image} alt='Logo' className='menu_language_logo' />
-          <span className='menu_language_link' onClick={e => e.preventDefault()} id={id}>{src?.text}</span>
+          <span className={'menu_language_link'} onClick={e => e.preventDefault()} id={id}>
+            {currentLabel}
+          </span>
         </div>
-        {!fromMenu && <DynamicMDIcon name='MdKeyboardArrowDown' size={20} className='down_icon_back2' />}
-      </div>
       </Dropdown>
     </div>
   );

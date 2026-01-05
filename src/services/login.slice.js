@@ -69,7 +69,7 @@ export const apiRegister = (data, url) => async dispatch => {
   }
 }
 
-export const apiLogin = (mail, password) => async dispatch => {
+export const apiLogin = (mail, password, fromAd) => async dispatch => {
   try {
     const config = {
       method: 'POST',
@@ -81,27 +81,29 @@ export const apiLogin = (mail, password) => async dispatch => {
     if(!response || response?.result){
       return Promise.resolve({ error: response?.message ?? 'Алдаа гарлаа.' });
     } else {
-      let isOwner = mail?.trim()?.toLowerCase() === response?.msMerchant?.email?.trim()?.toLowerCase();
-      dispatch(setIsOwner(isOwner));
-      dispatch(setToken(response?.token));
-      dispatch(setUser({
-        mail,
-        password,
-      //   comment
-      //   isAdmin: response?.isAdmin === 'Y',
-      //   approvedLevel1: response?.approvedLevel1 === 'Y',
-      //   approvedLevel2: response?.approvedLevel2 === 'Y',
-        merchantId: response?.merchantId,
-        msRole: response?.msRole,
-        msMerchant: response?.msMerchant,
-      //   useInventoryManagement: response?.useInventoryManagement === 'Y',
-      //   useAppointment: response?.useAppointment === 'Y',
-      }));
+      if(!fromAd){
+        let isOwner = mail?.trim()?.toLowerCase() === response?.msMerchant?.email?.trim()?.toLowerCase();
+        dispatch(setIsOwner(isOwner));
+        dispatch(setToken(response?.token));
+        dispatch(setUser({
+          mail,
+          password,
+          isAdmin: response?.isAdmin === 'Y',
+          approvedLevel1: response?.approvedLevel1 === 'Y',
+          approvedLevel2: response?.approvedLevel2 === 'Y',
+          merchantId: response?.merchantId,
+          msRole: response?.msRole,
+          msMerchant: response?.msMerchant,
+          useInventoryManagement: response?.useInventoryManagement === 'Y',
+          useAppointment: response?.useAppointment === 'Y',
+        }));
+      }
       return Promise.resolve({
         error: null,
         token: response?.token,
-        // viewReport: response?.msRole?.webViewSalesReport === 'Y',
-        // isAdmin: response?.isAdmin === 'Y'
+        viewReport: response?.msRole?.webViewSalesReport === 'Y',
+        isAdmin: response?.isAdmin === 'Y',
+        msMerchant: response?.msMerchant
       });
     }
   } catch (err) {
@@ -109,7 +111,6 @@ export const apiLogin = (mail, password) => async dispatch => {
     return Promise.resolve({ error: err?.toString() });
   }
 };
-
 export const apiValidate = mail => async dispatch => {
   try {
     const config = {

@@ -119,7 +119,7 @@ export function Signup(){
       <div style={{padding: 10}} />
       <div style={{flex: 1}} />
       <p className='lg_title1'>{t('login.signup_text')}</p>
-      <form onSubmit={handleSubmit} autoComplete='off' style={{width: 400, maxWidth: 'var(--safe-width)'}}>
+      <form onSubmit={handleSubmit} autoComplete='off' style={{width: 400, maxWidth: 'var(--safe-width)', padding: '0 15px', maxHeight: 620, overflow: 'scroll'}} id='y_scroll'>
         <LoginInput
           className='lg_input_back' color='#fff'
           text={t('login.email')}
@@ -170,12 +170,14 @@ export function Signup(){
           </p>
         </div>
         {error && <Error error={error} id='lg_error' />}
-        <Button
-          loading={loading}
-          type='submit'
-          className='lg_login_btn'
-          text={t('login.signup1')}
-          disabled={!checked} />
+        <div style={{position: 'sticky', zIndex: 1, bottom: 10}}>
+          <Button
+            loading={loading}
+            type='submit'
+            className='lg_login_btn'
+            text={t('login.signup1')}
+            disabled={!checked} />
+        </div>
       </form>
       <div style={{padding: 10}} />
       <div className='l_center_row'>

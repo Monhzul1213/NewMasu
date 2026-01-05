@@ -1,7 +1,7 @@
 @import './color.css';
 
 :root {
-  --logo-height: 54px;
+  --logo-height: 48px;
   --radius: 3px;
   --border-color: #949494;
   --input-font: 14px;
@@ -110,7 +110,7 @@
 .lg_input_icon {
   position: absolute;
   left: 10px;
-  top: 17px;
+  top: 15px;
   font-size: var(--l-icon-font-size);
   color: var(--text-color);
 }
@@ -136,7 +136,7 @@
   padding-left: 35px !important;
   padding-right: 5px !important;
   font-size: var(--l-input-font-size);
-  height: 48px;
+  height: 42px;
   border: 2px solid var(--root-color);
   background-color: var(--root-color);
   font-family: "Montserrat";
@@ -263,9 +263,8 @@ input::-webkit-input-placeholder {
 .lg_login_check .ant-checkbox .ant-checkbox-inner {
   background-color: transparent;
   border-color: var(--back-color);
-  height: 13px;
-  width: 13px;
   border-width: 1px;
+  padding: 3px;
 }
 
 .lg_login_link, .lg_login_check > span {
@@ -301,7 +300,8 @@ input::-webkit-input-placeholder {
 
 #login_language {
   color: var(--root-color);
-  font-size: var(--menu-font-size);
+  font-size: var(--descr-font-size);
+  margin-right: 15px;
 }
 
 .menu_language_btn {
@@ -352,9 +352,17 @@ input::-webkit-input-placeholder {
   align-items: center;
 }
 
+.menu_language_back2 {
+  padding: 2px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 5px;
+}
+
 .menu_language {
   color: var(--text-color);
-  font-size: var(--header-font-size);
+  font-size: var(--text-font-size);
   font-weight: 500;
 }
 
@@ -815,4 +823,8 @@ input::-webkit-input-placeholder {
   display: flex;
   flex-flow: row;
   margin: 5px 15px;
+}
+
+.ant-dropdown-menu-item{
+  border-bottom: 1px solid var(--back-color);
 }
