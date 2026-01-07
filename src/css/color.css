@@ -7,9 +7,11 @@
   --warning-filter: brightness(0) saturate(100%) invert(79%) sepia(96%) saturate(781%) hue-rotate(332deg) brightness(101%) contrast(98%);
   --success-color: #0cceb5;
   --success-t-color: #0cceb519;
-  --logo1-color: #003034;
-  --logo1-color_dis: #003034cc;
-  --logo2-color: #808f85;
+  --logo1-color: #a020f0;
+  --logo1-color_dis: #a020f0cc;
+  --logo2-color: #4f12aa;
+  --main-color: #6f0ad2;
+
 	--text-color: #1a1a1a;
   --text2-color: #757575;
   --text3-color: #969696;
@@ -31,10 +33,12 @@
   --input-color: #f1f1f1;
   --back1-color: #f9f9f9;
   --tag1-color: #88cfcf;
-  --tag2-color: #137575;
+  --tag2-color: #92278f;
   --tag3-color: #084a4a;
   --tag4-color: #556666;
   --tag2-h-color: #e8f1f1;
+
+
   --list-h-height: 56px;
   --header1-height: 64px;
   --pg-height: 32px;
@@ -59,8 +63,8 @@
   --modal-title1-font-size: 15px;
   --label-font-size: 11px;
   --select-font-size: 12px;
-  --table-header-font-size: 11px;
-  --table-cell-font-size: 13px;
+  --table-header-font-size: 10px;
+  --table-cell-font-size: 11px;
   --picker-label-font-size: 12px;
   --picker-input-font-size: 13px;
   --picker-error-font-size: 11px;

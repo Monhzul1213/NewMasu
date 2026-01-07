@@ -38,7 +38,7 @@ export function HomeVersion(props){
 
   return (
     <div ref={ref} className='hm_back1'>
-      <div id='hm_back2'>
+      <div id='hm_back2' className="y_scroll">
         <Empty3 data={versions} icon={<RiChatHistoryFill className="empty_icon" />} />
         {versions?.map(renderItem)}
       </div>

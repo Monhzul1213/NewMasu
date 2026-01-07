@@ -5,15 +5,16 @@ import { useNavigate } from "react-router";
 
 import { calcWidth } from "../../../helpers";
 import { DynamicAIIcon, Money } from "../../all";
-import { DetailAr, DetailSales, DetailRemain} from "./card";
+import { DetailAr, DetailSales, DetailRemain, DetailOrder} from "./card";
 
 export function DashboardCard(props){
-  const { pgWidth, sales, salesData, ar, arData, setId, remain, remainData, order, orderData } = props;
+  const { pgWidth, sales, salesData, ar, arData, remain, remainData, order, orderData } = props;
   const { t } = useTranslation();
   const [width, setWidth] = useState(250);
   const [salesVisible, setSalesVisible] = useState(false);
   const [arVisible, setArVisible] = useState(false);
   const [reVisible, setReVisible] = useState(false);
+  const [orVisible, setOrVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,14 +23,15 @@ export function DashboardCard(props){
     else if(pgWidth < 1045 && pgWidth >= 780) setWidth(calcWidth(pgWidth, 3));
     else if(pgWidth < 780 && pgWidth >= 515) setWidth(calcWidth(pgWidth, 2));
     else if(pgWidth < 515) setWidth(calcWidth(pgWidth, 1));
-    setId(pgWidth >= 1310 ? 'dash_row_large' : 'dash_row_small');
+    // setId(pgWidth >= 1310 ? 'dash_row_large' : 'dash_row_small');
     return () => {};
   }, [pgWidth]);
 
   const onClickSales = () => setSalesVisible(true);
   const onClickAr = () => setArVisible(true);
   const onClickRemain = () => setReVisible(true);
-
+  const onClickOrder = () => setOrVisible(true);
+  
   const cardProps = { width };
 
   return (
@@ -37,6 +39,7 @@ export function DashboardCard(props){
       {salesVisible && <DetailSales visible={salesVisible} setVisible={setSalesVisible} data1={salesData} />}
       {arVisible && <DetailAr visible={arVisible} setVisible={setArVisible} data1={arData} />}
       {reVisible && <DetailRemain visible={reVisible} setVisible={setReVisible} data1={remainData} />}
+      {orVisible && <DetailOrder visible={orVisible} setVisible={setOrVisible} data1={orderData} />}
       <Card {...cardProps}
         bgColor='var(--config1-color)'
         title={t('home.sales')}
@@ -44,7 +47,7 @@ export function DashboardCard(props){
         onClick={onClickSales}
         bottom={
           <div className='dash_card_row3'>
-            <FaShoppingBasket className='dash_card_basket1' />
+            <FaShoppingBasket className='dash_card_basket' />
             <p className='dash_card_count'>{sales?.salesQty ?? 0}</p>
           </div>
         }/>
@@ -59,10 +62,12 @@ export function DashboardCard(props){
       <Card {...cardProps}
         color='var(--text-color)'
         title={t('home.sales_order')}
+        value={order?.totalAmt}
+        onClick={onClickOrder}
         bottom={
           <div className='dash_card_row3' style={{backgroundColor: '#f5e751'}}>
-            <FaShoppingBasket className='dash_card_basket1' />
-            <p className='dash_card_count'>{sales?.salesQty ?? 0}</p>
+            <FaShoppingBasket className='dash_card_basket' />
+            <p className='dash_card_count'>{order?.totalQty ?? 0}</p>
           </div>
         } />
       <Card {...cardProps}

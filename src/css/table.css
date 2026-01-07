@@ -8,13 +8,13 @@
   .table_cell_text1 {
     color: var(--text-color);
     font-size: var(--table-cell-font-size);
-    padding: 10px 0;
+    padding: 3px 0;
   }
 
   .table_cell_text_resize {
     color: var(--text-color);
     font-size: var(--table-cell-font-size);
-    padding: 10px 0;
+    padding: 3px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -26,13 +26,13 @@
   .table_cell_text1 {
     color: var(--text-color);
     font-size: var(--table-cell-font-size);
-    padding: 10px 0;
+    padding: 3px 0;
   }
 
   .table_cell_text_resize {
     color: var(--text-color);
     font-size: var(--table-cell-font-size);
-    padding: 10px 0;
+    padding: 3px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -47,7 +47,7 @@
 .table_header_text, .table_header_text_resize {
   color: var(--text2-color);
   text-align: left;
-  padding: var(--page-padding) 0;
+  padding: 10px 0;
   font-size: var(--table-header-font-size);
   font-weight: 600;
   position: sticky;

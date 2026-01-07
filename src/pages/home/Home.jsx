@@ -20,6 +20,7 @@ export function Home(){
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [versions, setVersions] = useState([]);
+  const [infos, setInfos] = useState([]);
   const { user, token }  = useSelector(state => state.login);
   const maxWidth = useSelector(state => state.temp.maxWidth);
   const dispatch = useDispatch();
@@ -37,10 +38,10 @@ export function Home(){
     else {
       setVersions(response?.data?.versionhistory?.versionhistoryitem?.sort((a, b) =>
         moment(b.verisionDate, 'YYYY.MM.DD').valueOf() - moment(a.verisionDate, 'YYYY.MM.DD').valueOf()));
-    //   setNotiData(response?.data?.notif?.notif?.sort((a, b) => b.createdDate - a.createdDate))
-    //   const items = response?.data?.notif?.notifitem || [];
-    //   const unread = items.filter(item => item.isShow === 'N').length;
-    //   setInfoCount(unread);
+      setInfos(response?.data?.notif?.notif?.sort((a, b) => b.createdDate - a.createdDate))
+      const items = response?.data?.notif?.notifitem || [];
+      const unread = items.filter(item => item.isShow === 'N').length;
+      setInfoCount(unread);
     //   const item1 = response?.data?.versionhistory?.versionhistoryitem;
     }
     setLoading(false);
@@ -49,11 +50,12 @@ export function Home(){
   const barProps = { tab, setTab, infoCount };
   const dashProps = { tab };
   const versionProps = { tab, getData, versions };
+  const infoProps = { tab, getData, infos };
 
   const items = [
     { key: 'dashboard', label: t('home.dashboard'), children: <HomeDashboard {...dashProps} /> },
     { key: 'settings', label: t('home.settings'), children: <HomeSettings /> },
-    { key: 'info', label: t('home.info'), children: <HomeInfo /> },
+    { key: 'info', label: t('home.info'), children: <HomeInfo {...infoProps}/> },
     { key: 'version', label: t('home.version'), children: <HomeVersion {...versionProps} /> }
   ];
 

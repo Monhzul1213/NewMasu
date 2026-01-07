@@ -198,6 +198,12 @@ export function Menu(props){
     zIndex: 1000
   };
 
+  const menuIcon = src => (
+    <span className="ant-menu-item-icon">
+      <img src={src} alt="" style={{ width: 18, height: 18 }} />
+    </span>
+  );
+  
   const items = isPartner ? [
     getItem(t('menu.partner'), '/partner', <img src={receipt} alt='image13'/>),
   ] : isAdmin ? [
@@ -212,7 +218,8 @@ export function Menu(props){
       getItem(t('menu.system_change'), '/system/system_change')
     ])
   ] : [
-    getItem(t('menu.control'), '/control', <img src={home} alt='image9' />, null, null, msRole?.webManageItem !== 'Y'),
+    getItem(t('menu.home'), '/control', menuIcon(home), null, null, msRole?.webManageItem !== 'Y'),
+        // getItem(t('menu.home'), '/control1', <img src={home} alt='image9' />, null, null, msRole?.webManageItem !== 'Y'),
     // getItem(t('menu.help'), '/help', <img src={settings} alt='image11' />),
   ];
 

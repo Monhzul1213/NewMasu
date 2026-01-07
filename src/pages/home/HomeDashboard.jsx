@@ -16,10 +16,12 @@ export function HomeDashboard(props){
   const [salesData, setSalesData] = useState([]);
   const [remain, setRemain] = useState(null);
   const [remainData, setRemainData] = useState([]);
+  const [order, setOrder] = useState(null);
+  const [orderData, setOrderData] = useState([]);
   const [ar, setAr] = useState(null);
   const [arData, setArData] = useState([]);
   const [error, setError] = useState(null);
-  const [id, setId] = useState('dash_row_large');
+  const [cardData, setCardData] = useState([]);
   const [graphData, setGraphData] = useState([]);
   const [ref, bounds] = useMeasure();
   const { user, token } = useSelector(state => state.login);
@@ -35,7 +37,7 @@ export function HomeDashboard(props){
       getData(query);
       getData1(query);
       getData2(query);
-      // getData3();
+      getData3(query);
     }
     return () => {};
   }, [tab]);
@@ -48,6 +50,7 @@ export function HomeDashboard(props){
     console.log(response);
     if(response?.error) setError(response?.error);
     else {
+      setCardData(response?.data && response?.data[2]?.sort((a, b) => b.salesPercent - a.salesPercent));
       let salesQty = 0, salesAmt = 0, refund = 0, discount = 0, net = 0, profit = 0;
       let graphData = response?.data && response?.data[0];
       graphData?.forEach(item => {
@@ -102,6 +105,31 @@ export function HomeDashboard(props){
     setLoading(false);
   }
 
+  const getData3 = async (query) => {
+    setError(null);
+    setLoading(true);
+    let api = 'Sales/GetSalesHold' + (query ?? '');
+    const response = await dispatch(getList(user, token, api));
+    if(response?.error) setError(response?.error);
+    else {
+      let totalQty = 0, totalAmt = 0;
+      response?.data?.cardview.forEach(item => {
+        if(item?.status === 0){
+          totalQty += (item?.qty ?? 0);
+          totalAmt += (item?.amount ?? 0);
+        }
+      });
+      setOrder({totalQty, totalAmt});   
+      response?.data?.list?.forEach(item => {
+        let acc = item.ticketDescr ? item.ticketDescr?.split('|') : []
+        let a = acc[0] ? acc[0] + '\n': ''; let b = acc[1] ? acc[1]  + '\n': ''; let c = acc[2] ? acc[2]+ '\n': '' ; let d = acc[3] ? acc[3]: '';
+        item.ticket = a + b + c + d
+      })
+      setOrderData(response?.data?.list?.filter(item => item?.status === 0));    
+    }
+    setLoading(false);
+  }
+
   const formatData = data => {
     let newData = [];
     for (let index = 0; index <= 23; index++) {
@@ -114,19 +142,20 @@ export function HomeDashboard(props){
     }
     return newData;
   }
-  console.log(graphData);
 
-  const cardProps = { pgWidth, sales, salesData, ar, arData, setId, remain, remainData };
+  const cardProps = { pgWidth, sales, salesData, ar, arData, remain, remainData, order, orderData };
   const chartProps = { pgWidth, sales, graphData };
+  const itemcardProps = {pgWidth, data: cardData}
   
   return (
-    <Overlay loading={loading}>
+    <div>
       <div ref={ref} className='hm_back'>
         {error && <Error1 error={error} />}
         <DashboardCard {...cardProps} />
+        <DashboardList {...itemcardProps}/>
         <DashboardChart {...chartProps} />
       </div>
-    </Overlay>
+    </div>
   );
 }
 
