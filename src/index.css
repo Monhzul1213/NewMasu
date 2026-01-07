@@ -1,4 +1,5 @@
 @import './css/color.css';
+@import './css/font.css';
 
 :root {
   line-height: 1.5;
@@ -278,14 +279,7 @@ p {
   .page_container {
     margin: 10px;
     padding: 5px;
-    min-height: calc(110vh - var(--header-height) - var(--page-padding) * 2);
-    overflow: scroll;
-  }
-
-  .page_container1 {
-    margin: 15px 10px;
-    padding: 0 5px;
-    min-height: calc(110vh - var(--header-height) - var(--page-padding) * 2);
+    min-height: calc(100vh - var(--header-height) - var(--page-padding) * 2 - 1000px);
     overflow: scroll;
   }
 
@@ -297,17 +291,9 @@ p {
 
 @media only screen and (max-width: 740px) {
   .page_container {
-    margin: 10px;
-    padding: 5px;
-    min-height: calc(110vh - var(--header-height) - var(--page-padding) * 2);
-    min-width: var(--safe-width1);
-    overflow: scroll;
-  }
-
-  .page_container1 {
     margin: 15px 10px;
     padding: 0 5px;
-    min-height: calc(110vh - var(--header-height) - var(--page-padding) * 2);
+    min-height: calc(100vh - var(--header-height) - var(--page-padding) * 2 - 10px);
     min-width: var(--safe-width1);
     overflow: scroll;
   }
@@ -711,8 +697,8 @@ p {
 }
 
 .check_all_btn {
-  height: 18px;
-  width: 18px;
+  height: 14px;
+  width: 14px;
   color: var(--text4-color);
 }
 
@@ -725,7 +711,7 @@ p {
 }
 
 #check_all_selected:hover {
-  color: var(--tag2-color);
+  color: var(--config-h-color);
 }
 
 .m_title_row {

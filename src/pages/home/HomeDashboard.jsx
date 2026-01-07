@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import useMeasure from "react-use-measure";
 import moment from 'moment';
 
 import { getList } from "../../services";
-import { Error1, Overlay } from "../../components/all";
+import { Error1 } from "../../components/all";
 import { DashboardCard, DashboardChart, DashboardList } from "../../components/home/dashboard";
 
 export function HomeDashboard(props){
   const { tab } = props;
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [sales, setSales] = useState(null);
   const [salesData, setSalesData] = useState([]);

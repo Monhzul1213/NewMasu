@@ -34,13 +34,14 @@
   --back1-color: #f9f9f9;
   --tag1-color: #88cfcf;
   --tag2-color: #92278f;
-  --tag3-color: #084a4a;
+  --tag3-color: #a020f0;
   --tag4-color: #556666;
   --tag2-h-color: #e8f1f1;
 
 
   --list-h-height: 56px;
   --header1-height: 64px;
+  --header-height: 50px;
   --pg-height: 32px;
   --side-width: 72px;
   --radius: 5px;

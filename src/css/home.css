@@ -1,5 +1,15 @@
 @import './color.css';
 
+.main_row{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.main_col{
+  display: flex;
+  flex-flow: column;
+}
+
 .dashboard_header_back {
   display: flex;
   flex-flow: row;
@@ -62,7 +72,7 @@
 
 .hm_back1 {
   margin-top: var(--page-padding);
-  background-color: var(--root-color);
+  /* background-color: var(--root-color); */
   border-radius: var(--radius);
   /* box-shadow: 0px 2px 5px rgba(0,0,0,.15); */
   max-width: 800px;
@@ -583,4 +593,113 @@
     width: 100%;
     max-width: 800px;
     border-radius: 10px;
+}
+
+
+/* Settings
+ */
+.co_select.ant-select .ant-select-selector {
+    box-shadow: none;
+    border: none;
+    color: var(--text-color);
+    font-size: var(--item-font);
+    background-color: #D1D3D4;
+    border-radius: var(--radius);
+    width: 260px;
+    max-width: 90%;
+}
+
+.co_select .ant-select-selector {
+    box-shadow: none !important;
+}
+
+.co_select .ant-select-arrow {
+    color: var(--text2-color);
+    font-size: var(--value-font);
+    right: 30px;
+}
+.co_select_back {
+    display: flex;
+    flex-flow: column;
+    /* border-bottom: 1px solid var(--text4-color); */
+    margin: 10px 0 0 0;
+    width: 260px;
+    /* max-width: 90%; */
+    /* padding: 0 0; */
+}
+
+.co_select_back:focus-within {
+    border-bottom: 1px solid var(--success-color);
+}
+
+.co_select_back:focus-within .select_lbl {
+    color: var(--success-color);
+}
+.co_title {
+    margin: 0 0 20px 0;
+    font-size: var(--title-font-size);
+    font-weight: 500;
+    line-height: var(--empty-font-size);
+    color: var(--text-color);
+}
+
+.co_image {
+    width: 190px;
+    height: 190px;
+}
+
+.co_image.ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select {
+    width: 190px;
+    height: 190px;
+    overflow: hidden;
+    border-color: var(--border1-color);
+    background-color: var(--back-color);
+    align-self: center;
+    border-radius: 10px;
+}
+
+.co_image.ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select:hover {
+    border-color: var(--config1-color);
+}
+.upload_btn {
+  color: var(--text2-color);
+  font-size: var(--icon-font);
+  margin-bottom: 5px;
+}
+
+.upload_text {
+  color: var(--text2-color);
+  font-size: var(--value-font);
+  font-weight: 500;
+}
+
+.upload_image {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+.co_input {
+    border: none;
+    color: var(--text-color);
+    font-size: var(--item-font);
+    height: 32px;
+    padding-left: 10px;
+    background-color: #D1D3D4;
+    border-radius: 5px;
+}
+#doc_input {
+  height: 80px;
+  padding: 10px;
+}
+.i_check_row {
+  display: flex;  
+  flex-flow: row;
+  align-items: center;
+  margin: 20px 0 0 0;
+}
+.i_check_lbl {
+  font-size: var(--value-font);
+  font-weight: 450;
+  color: var(--text-color);
+  margin: 0 0 0 10px;
 }
