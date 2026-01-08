@@ -47,7 +47,6 @@ export function HomeDashboard(props){
     setLoading(true);
     let api = 'Sales/GetSalesSummary' + query + '&SearchPeriod=H';
     const response = await dispatch(getList(user, token, api));
-    console.log(response);
     if(response?.error) setError(response?.error);
     else {
       setCardData(response?.data && response?.data[2]?.sort((a, b) => b.salesPercent - a.salesPercent));

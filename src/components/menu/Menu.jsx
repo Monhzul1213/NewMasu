@@ -219,7 +219,10 @@ export function Menu(props){
     ])
   ] : [
     getItem(t('menu.home'), '/control', menuIcon(home), null, null, msRole?.webManageItem !== 'Y'),
-        // getItem(t('menu.home'), '/control1', <img src={home} alt='image9' />, null, null, msRole?.webManageItem !== 'Y'),
+    getItem(t('menu.inventory'), '/inventory', menuIcon(product), [
+      getItem(t('menu.inventory'), '/inventory/invt_list', null, null, null, msRole?.webManageItem !== 'Y'),
+      getItem(t('menu.invt_category'), '/inventory/invt_category', null, null, null, msRole?.webManageItem !== 'Y'),
+    ]),    
     // getItem(t('menu.help'), '/help', <img src={settings} alt='image11' />),
   ];
 

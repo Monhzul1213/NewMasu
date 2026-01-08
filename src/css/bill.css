@@ -1264,14 +1264,11 @@
 }
 .co_s_container {
     box-shadow: none;  
-    /* min-height: calc(100vh - var(--header-height) - var(--page-padding) * 10); */
     max-height: calc(100vh - var(--header-height) - var(--page-padding) * 11);
-    /* background-color: var(--root-color); */
-    padding: var(--page-padding);
+    padding: 0 var(--page-padding);
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    margin: 10px 0;
     overflow: scroll;
 }
 .account-list {

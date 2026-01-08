@@ -247,9 +247,10 @@ export function HomeSettings(){
 
   return (
     <Overlay loading={loading}>
+      <div ref={ref} className='hm_back'>
         {error && <Error1 error={error} />}
-        <div ref={ref}  className='main_row' style={{overflow: 'scroll'}} id='table_scroll'>
-          <div style={{width: 700}}>
+        <div className='main_row' style={{overflow: 'scroll'}} id='table_scroll'>
+          <div style={{width: 700, display: 'flex', flexFlow: 'column', justifyContent: 'space-between'}}>
             <div className='co_s_container' style={pgWidth > 700 ? {flexFlow: 'row'} : {flexFlow: 'column'}} id='y_scroll'>
               <BillSettings {...billProps}/>
               <BillPreview {...billPreProps}/>
@@ -271,6 +272,7 @@ export function HomeSettings(){
             <ButtonRow {...invoicebtnProps}/>
           </div>
         </div>
+      </div>
     </Overlay>
   );
 }

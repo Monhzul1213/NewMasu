@@ -274,3 +274,76 @@ export function TableRowResize(props){
     </table>
   );
 }
+
+export function TableDetailResize1(props){
+  const { tableInstance, onRowClick, Detail, detailName, className1, hasFooter, TBodyComponent} = props;
+
+  return (
+    <table className="table_back_resize">
+      <thead style={{ position: "sticky", top: 0, alignSelf: "flex-start", zIndex: 1}}>
+        {tableInstance.getHeaderGroups().map(headerGroup => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map(header => {
+              let sorted = header?.column.getIsSorted();
+              let style1 = header?.column.columnDef.meta?.style ?? {};
+              let style = {...style1, position: 'relative', width: header.getSize() };
+              return (
+                <th key={header.id} className='table_header_text_resize' id={header?.column?.getIsResizing() ? 'resizing_th' : ''} style={style}>
+                  <div className='table_header_cell' onClick={header.column.getToggleSortingHandler()}>
+                    <div style={{flex: 1}} className='table_header_cell_resize'>
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </div>
+                    {header.column.getCanSort() && <Sort sorted={sorted} />}
+                  </div>
+                  <div
+                    className='resizer' id={header?.column?.getIsResizing() ? 'resizing' : ''}
+                    onMouseDown={header.getResizeHandler()}
+                    onTouchStart={header.getResizeHandler()} />
+                </th>
+              );
+            })}
+          </tr>
+        ))}
+      </thead>
+      {TBodyComponent ? (
+        TBodyComponent(tableInstance)
+      ) : (
+       <tbody className='table_body_back'>
+          {tableInstance.getRowModel().rows.map(row => (
+            <Fragment key={row.id}>
+              <tr className='table_row'>
+                {row.getVisibleCells().map(cell => {
+                  let noClick = cell.getContext().cell.column.columnDef.meta?.noClick;
+                  let style = cell.getContext().cell?.column.columnDef.meta?.style;
+                  return (
+                    <td className='table_cell_text1' key={cell.id} onClick={() => !noClick && onRowClick && onRowClick(row)} style={style}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  );
+                })}
+              </tr>
+              {row.getIsExpanded() && (
+                <tr>
+                  <td colSpan={row.getVisibleCells().length} style={{paddingRight: 0}}>
+                    {renderSubComponent({ row })}
+                  </td>
+                </tr>
+              )}
+            </Fragment>
+          ))}
+        </tbody>
+      )}
+      {hasFooter && <tfoot style={{ position: "sticky", bottom: 0, alignSelf: "flex-end", zIndex: 0}}>
+        {tableInstance.getFooterGroups().map(footerGroup => (
+          <tr key={footerGroup.id}>
+            {footerGroup.headers.map(header => (
+              <th key={header.id} className='table_footer_text_o'>
+                {flexRender(header.column.columnDef.footer, header.getContext())}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </tfoot>}
+    </table>
+  );
+}

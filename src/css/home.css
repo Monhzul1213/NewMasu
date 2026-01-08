@@ -3,7 +3,6 @@
 .main_row{
   display: flex;
   flex-flow: row;
-  align-items: center;
 }
 .main_col{
   display: flex;
@@ -659,7 +658,7 @@
 }
 
 .co_image.ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select:hover {
-    border-color: var(--config1-color);
+    border-color: var(--config-color);
 }
 .upload_btn {
   color: var(--text2-color);

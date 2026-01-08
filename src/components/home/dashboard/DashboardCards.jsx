@@ -41,7 +41,7 @@ export function DashboardCard(props){
       {reVisible && <DetailRemain visible={reVisible} setVisible={setReVisible} data1={remainData} />}
       {orVisible && <DetailOrder visible={orVisible} setVisible={setOrVisible} data1={orderData} />}
       <Card {...cardProps}
-        bgColor='var(--config1-color)'
+        bgColor='var(--config-color)'
         title={t('home.sales')}
         value={sales?.salesAmt}
         onClick={onClickSales}

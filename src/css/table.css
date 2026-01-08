@@ -194,6 +194,9 @@ tfoot > tr > th {
   border-color: var(--success-color);
 }
 
+.ed_select_back .ant-select-single {
+  height: 19px;
+}
 .table_row:hover .ed_select_back, .table_row_selected:hover .ed_select_back, .table_row:hover #hide_border, .table_row_selected:hover #hide_border {
   border-color: var(--text4-color);
 }
@@ -205,10 +208,7 @@ tfoot > tr > th {
   font-size: var(--table-cell-font-size);
   background-color: transparent;
   padding: 0;
-}
-
-.ed_select.ant-select .ant-select-selector {
-  box-shadow: none !important;
+  height: 19px;
 }
 
 .ed_select .ant-select-selector {
@@ -362,4 +362,17 @@ tfoot > tr > th {
   font-size: var(--table-cell-font-size);
   font-weight: 600;
   margin: 0 0 0 5px;
+}
+.table_cell_text_resize1 {
+  color: var(--text-color);
+  font-size: 11px;
+  padding: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 5px;
+  align-items: center;
+}
+.ed_select_back .ant-select-single .ant-select-selector .ant-select-selection-item{
+  line-height: 18px;
 }

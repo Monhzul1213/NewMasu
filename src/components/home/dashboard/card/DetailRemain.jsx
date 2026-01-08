@@ -12,7 +12,6 @@ export function DetailRemain(props){
   const [data, setData] = useState([]);
   const columnHelper = createColumnHelper();
 
-  console.log(data1);
   useEffect(() => {
     setData(data1);
     setColumns([

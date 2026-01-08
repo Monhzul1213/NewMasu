@@ -272,7 +272,7 @@ p {
 }
 
 .ant-layout {
-  background-color: var(--back-color); 
+  background-color: var(--root-color); 
 }
 
 @media only screen and (min-width: 740px) {
@@ -332,10 +332,11 @@ p {
   padding-top: 7px;
 }
 
-.ih_header1 {
+.ih_header {
   display: flex;
   flex-flow: row;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 #ih_large .ih_header2, #ih_large .ih_header2_wrap {
@@ -383,13 +384,13 @@ p {
 }
 
 #add_row_add {
-  background-color: var(--tag2-color);
+  background-color: var(--config-b-color);
   color: var(--root-color);
 }
 
 #add_row_add:hover {
   cursor: pointer;
-  background-color: var(--tag3-color);
+  background-color: var(--config-color);
 }
 
 #add_row_delete {
