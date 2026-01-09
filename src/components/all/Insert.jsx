@@ -26,7 +26,7 @@ export function Insert(props){
   }, [text]);
 
   const getData = async value => {
-    if(value?.length > 3){
+    if(value?.length > 1){
       setLoading(true);
       setSearch({ value: null });
       let filter = [{ fieldName: "Name", value }];

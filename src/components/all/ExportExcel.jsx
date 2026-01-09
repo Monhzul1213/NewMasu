@@ -1,60 +1,63 @@
-// import React from "react";
-// import * as FileSaver from 'file-saver';
-// import XLSX from 'sheetjs-style';
+import React from "react";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 import { Button } from "./Button";
 
-// import { Button } from "./Button";
-
-// export function ExportExcel(props){
-//   const { className, text, excelData, excelName, columns } = props;
-//   const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
-//   const fileExtension = ".xlsx";
-
-//   const exportToExcel = async () => {
-//     let excelData1 = excelData?.map(item => {
-//       let newItem = {};
-//       columns?.forEach(col => { if(col?.exLabel) newItem[col.exLabel] = item[col.accessorKey] });
-//       return newItem;
-//     });
-//     const ws = XLSX.utils.json_to_sheet(excelData1);
-//     const wb = { Sheets: { data: ws }, SheetNames: ['data'] } ;
-//     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-//     const data = new Blob([excelBuffer], { type: fileType });
-//     FileSaver.saveAs(data, excelName + fileExtension);
-//   }
-
-//   return (<Button className={className ?? 'ih_btn'} text={text} onClick={exportToExcel} />);
-// }
-
-export function InventoryExcel(props){
+export function ExportExcel(props){
   const { excelData, columns, excelName, text, width } = props;
   const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
   const fileExtension = ".xlsx";
 
-  const exportToExcel = async () => {
-    let excelData1 = excelData?.map(item => {
-      let newItem = {};
-      columns?.forEach(col => {
-        if(col?.exLabel){
-          let accessorKey = col.accessorKey?.split('.');
-          newItem[col.exLabel] = item[accessorKey[0]][accessorKey[1]];
-        }
-      });
-      return newItem;
-    });
-    const ws = XLSX.utils.json_to_sheet(excelData1);
-    ws['!cols'] = width;
-    ws["A1"].s = { font: { sz: '14', bold: true }};
-    ws["B1"].s = { font: { sz: '14', bold: true }};
-    ws["C1"].s = { font: { sz: '14', bold: true }};
-    ws["D1"].s = { font: { sz: '14', bold: true }};
-    ws["E1"].s = { font: { sz: '14', bold: true }};
-    const wb = { Sheets: { data: ws }, SheetNames: ['data'] } ;
-    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array", cellStyles: true });
-    const data = new Blob([excelBuffer], { type: fileType });
-    FileSaver.saveAs(data, excelName + fileExtension);
-  }
+const exportToExcel = () => {
+
+  // 1. Header row
+  const header = columns
+    ?.filter(c => c.exLabel)
+    .map(c => c.exLabel);
+
+  // 2. Body rows
+  const body = excelData?.map(item =>
+    columns
+      ?.filter(c => c.exLabel)
+      .map(col => {
+        const keys = col.accessorKey?.split('.');
+        return keys?.length === 2
+          ? item?.[keys[0]]?.[keys[1]]
+          : item?.[col.accessorKey];
+      })
+  );
+
+  // 3. Sheet data
+  const sheetData = [header, ...body];
+
+  const ws = XLSX.utils.aoa_to_sheet(sheetData);
+
+  // column width
+  ws['!cols'] = width;
+
+  // 4. Header style (зарим Excel дээр л харагдана)
+  header.forEach((_, index) => {
+    const cellAddress = XLSX.utils.encode_cell({ r: 0, c: index });
+    ws[cellAddress].s = {
+      font: { bold: true },
+      alignment: { horizontal: "center" }
+    };
+  });
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "data");
+
+  const excelBuffer = XLSX.write(wb, {
+    bookType: "xlsx",
+    type: "array",
+    cellStyles: true
+  });
+
+  const data = new Blob([excelBuffer], { type: fileType });
+  FileSaver.saveAs(data, excelName + fileExtension);
+};
+
 
   return (<Button className='ih_btn' text={text} onClick={exportToExcel} />);
 }

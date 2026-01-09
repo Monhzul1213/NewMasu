@@ -196,9 +196,9 @@ p {
 
 .a_btn_delete {
   position: absolute;
-  left: calc(var(--title-padding) - 6px);
-  width: 28px;
-  height: 28px;
+  left: 0px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   color: var(--danger-color);
   padding: 6px;
@@ -236,7 +236,7 @@ p {
 }
 
 #a_btn_save {
-  color: var(--tag2-color);
+  color: var(--config-b-color);
 }
 
 #a_btn_save:hover {
@@ -708,11 +708,11 @@ p {
 }
 
 #check_all_selected {
-  color: var(--config-h-color);
+  color: var(--config-b-color);
 }
 
 #check_all_selected:hover {
-  color: var(--config-h-color);
+  color: var(--config-color);
 }
 
 .m_title_row {
@@ -803,7 +803,7 @@ p {
 }
 
 .im_add_btn {
-  background-color: var(--tag2-color);
+  background-color: var(--config-b-color);
   border: none;
   box-shadow: none;
   height: 36px;
@@ -818,7 +818,7 @@ p {
 
 .im_add_btn:hover {
   cursor: pointer;
-  background-color: var(--tag3-color);
+  background-color: var(--config-color);
 }
 
 .im_add_btn_icon {
@@ -1031,19 +1031,21 @@ p {
 
 .invt_btn:hover {
   cursor: pointer;
-  color: var(--tag2-color);
-  border: 1px solid var(--tag2-color);
+  color: var(--config-color);
+  border: 1px solid var(--config-color);
 }
 
 #invt_btn_save {
-  background-color: var(--config-h-color);
+  border: none;
+  background-color: var(--config-b-color);
   color: var(--root-color);
   font-weight: 550;
 }
 
 #invt_btn_save:hover {
   cursor: pointer;
-  background-color: var(--tag2-color);
+  background-color: var(--config-color);
+  border: none;
 }
 
 .es_title {

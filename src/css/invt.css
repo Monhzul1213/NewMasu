@@ -350,7 +350,7 @@
 .co_check_btn {
   border: none;
   box-shadow: none;
-  background-color: var(--tag2-color);
+  background-color: var(--config-b-color);
   height: 36px;
   border-radius: var(--radius);
   font-size: var(--button-font-size);
@@ -365,7 +365,7 @@
 
 .co_check_btn:hover {
   cursor: pointer;
-  background-color: var(--tag3-color);
+  background-color: var(--config-color);
 }
 
 .co_check_btn:disabled {
@@ -415,7 +415,7 @@
 }
 
 .a_item_check.ant-switch-checked {
-  background-color: var(--tag1-color) !important;
+  background-color: var(--tag3-color) !important;
 }
 
 .a_item_check.ant-switch .ant-switch-handle {
@@ -431,7 +431,7 @@
 }
 
 .a_item_check.ant-switch-checked .ant-switch-handle:before {
-  background-color: var(--tag2-color);
+  background-color: var(--tag3-color);
 }
 
 .cs_name {
@@ -458,9 +458,10 @@
 }
 
 .ac_delete {
-  color: var(--text2-color);
-  font-size: var(--modal-title-font-size);
+  color: var(--text4-color);
+  font-size: var(--title-font);
   text-align: center;
+  padding: 2px 0;
 }
 
 .ac_delete:hover {
@@ -668,7 +669,7 @@
 }
 
 .a_item_check.ant-switch-checked .ant-switch-handle:before {
-  background-color: var(--tag2-color);
+  background-color: var(--tag3-color);
 }
 
 #add_bottom_row {
@@ -696,4 +697,36 @@
 .t_image:hover {
   cursor: pointer;
   color: var(--config-color);
+}
+.dr_back{
+  max-height: 400px;
+}
+.dr_title {
+  color: var(--text-color);
+  font-size: var(--label-font);
+  margin: 0;
+  font-weight: 450;
+  text-align: center;
+  padding: 25px 0 10px 0;
+}
+.dr_image_holder {
+  background-color: var(--back-color);
+  height: 348px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dr_image_text {
+  margin: 0;
+  font-size: var(--title2-font);
+  font-weight: 600;
+  color: var(--text4-color);
+}
+
+.dr_image {
+  width: 100%;
+  border: solid 1px var(--back-color);
+  border-radius: 5px;
 }

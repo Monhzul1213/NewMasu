@@ -6,6 +6,7 @@ import CurrencyInput from 'react-currency-input-field';
 import ReactInputMask from "@mona-health/react-input-mask";
 
 import { DynamicAIIcon, DynamicMDIcon } from "./DynamicIcon";
+import { timeList1 } from "../../helpers";
 
 export function AddInput(props){
   const { value, setValue, label, placeholder, disabled, setError, setEdited, handleEnter, inRow, length, noBlur, className, classBack, color } = props;
@@ -285,6 +286,69 @@ export function InputPassword(props){
         : <DynamicAIIcon className='m_input_show' name='AiOutlineLock' onClick={onClickLock} />
       }
       {value?.error && <p className='f_input_error'>{value?.noLabel ? '' : label} {value?.error}</p>}
+    </div>
+  );
+}
+
+export function TimeInput(props){
+  const { handleEnter, placeholder, value, setValue, label, style } = props;
+  const [open, setOpen] = useState(false);
+
+  const handleSearch = data => setValue({ value: data });
+
+  const onKeyDown = e => {
+    if(e?.key?.toLowerCase() === "enter"){
+      if(handleEnter) handleEnter(e);
+      else {
+        const form = e.target.form;
+        if(form){
+          const index = [...form].indexOf(e.target);
+          form.elements[index + 1]?.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  }
+
+  const onSelect = val => {
+    setValue({ value: val });
+    setOpen(false);
+  };
+
+  const onChange = e => setValue({ value: e });
+  const onClick = e => setOpen(true);
+
+  const onBlur = () => {
+    let length = value?.value?.replace(/[-.]/g, '')?.length;
+    if(length !== 0 && length !== 5) setValue({ value: value?.value?.replace(/-/g, '0') });
+  }
+  
+  const style1 = value?.error ? { borderColor: '#e41051', color: '#e41051' } : {};
+
+  return (
+    <div className='invt_time_back'>
+      {label && <p className='select_lbl_i' style={style1}>{label}</p>}
+      <AutoComplete
+        onKeyDown={onKeyDown}
+        allowClear 
+        filterOption={(inputValue, option) => option.value.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0 }
+        style={style}
+        onSearch={handleSearch}
+        className='invt_select'
+        onSelect={onSelect}
+        onChange={onChange}
+        open={open}
+        placeholder={placeholder}
+        value={value?.value}
+        options={timeList1}>
+        <ReactInputMask
+          className='m_input'
+          maskPlaceholder='-'
+          placeholder='--:--'
+          mask='99:99'
+          onBlur={onBlur} />
+      </AutoComplete>
+      <DynamicMDIcon size={18} name='MdOutlineKeyboardArrowDown' className='tm_select_icon' onClick={onClick} />
     </div>
   );
 }

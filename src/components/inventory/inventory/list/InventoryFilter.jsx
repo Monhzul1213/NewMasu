@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getList } from "../../../../services";
-import { Button, ButtonRowAdd, InventoryExcel, PlainSelect, Search1 } from "../../../all";
+import { Button, ButtonRowAdd, ExportExcel, PlainSelect, Search1 } from "../../../all";
 
 export function InventoryFilter(props){
   const { pgWidth, show, columns, data, cats, onClickAdd, onClickDelete, onClickImport, onSearch, setError, vendors } = props;
@@ -92,7 +92,7 @@ export function InventoryFilter(props){
       <div className='ih_header'>
         <ButtonRowAdd type='inventory' {...addProps} />
         {!show && <Button className='ih_btn' text={t('page.import')} onClick={onClickImport} />}
-        {!show && <InventoryExcel text={t('page.export')} excelData={data} columns={columns} width={excelWidth} excelName={t('header./inventory')} />}
+        {!show && <ExportExcel text={t('page.export')} excelData={data} columns={columns} width={excelWidth} excelName={t('header./inventory')} />}
       </div>
       <div className="filter_wrap">
         <Search1 search={search} setSearch={setSearch} handleEnter={handleEnter} width={width?.search} />

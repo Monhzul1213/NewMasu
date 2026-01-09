@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createColumnHelper, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 
-import { CellMoney, Check, CheckAll, Money, Pagination, Table } from "../../../all";
+import { CellMoney, Check, CheckAll, Money, Table } from "../../../all";
 import { PriceModalSales } from "./PriceModalSales";
 import { PriceModalWhole } from "./PriceModalWhole";
 import { PriceModalSafe } from "./PriceModalSafe";
@@ -29,11 +29,11 @@ export function InventoryCardSite(props){
           </div>
         ),
         enableSorting: false,
-        meta: { style: { width: 65 } }
+        meta: { style: { width: 50 } }
       }),
       columnHelper.accessor('name', { header: <div style={{flex: 1}}>{t('inventory.t_site')}</div> }),
       columnHelper.accessor('useNhat', {
-        header: <div className="cell_center" style={{maxWidth: 88}}>{t('inventory.t_nhat')}</div>,
+        header: <div className="cell_center" style={{maxWidth: 95}}>{t('inventory.t_nhat')}</div>,
         cell: ({ row, table }) => {
           let checked = row?.original?.useNhat === 'Y';
           return (
@@ -43,7 +43,7 @@ export function InventoryCardSite(props){
           );
         },
         enableSorting: false,
-        meta: { style: { width: 90 } }
+        meta: { style: { width: 98 } }
       }),
       columnHelper.accessor('price', {
         header: <div style={{textAlign: 'right'}}>{t('inventory.t_price')}</div>,
@@ -244,7 +244,7 @@ export function InventoryCardSite(props){
   const tableInstance = useReactTable({
     data, columns,
     state: { sorting },
-    initialState: { pagination: { pageIndex: 0, pageSize: 25 } },
+    // initialState: { pagination: { pageIndex: 0, pageSize: 3 } },
     autoResetPageIndex: false,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
@@ -270,7 +270,6 @@ export function InventoryCardSite(props){
           <Table {...tableProps} />
         </div>
       </div>
-      <Pagination {...tableProps} />
     </div>
   );
 }

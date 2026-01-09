@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { createColumnHelper, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import useMeasure from "react-use-measure";
 
-import { CellItem, CellMoney, CellQty, DynamicBSIcon, Insert, Money, Pagination, Table } from "../../../all";
+import { CellItem, CellMoney, CellQty, DynamicBSIcon, Insert, Money, Table } from "../../../all";
 
 export function InventoryCardKit(props){
   const { isKit, setIsKit, isUseTime, setCost, search, setSearch, total, setTotal, data, setData, setEdited, setDKits } = props;
@@ -16,6 +16,17 @@ export function InventoryCardKit(props){
 
   useEffect(() => {
     setColumns([
+      columnHelper.accessor('delete', {
+        id: 'delete-col',
+        header: '',
+        cell: ({ row, table }) => (
+          <div className='ac_delete_back'>
+            <DynamicBSIcon name='BsDashCircleFill' className='ac_delete' onClick={() => table?.options?.meta?.onClickDelete(row)} />
+          </div>
+        ),
+        enableSorting: false,
+        meta: { style: { width: 40 } }
+      }),
       columnHelper.accessor('name', {
         header: t('inventory.t_comp'),
         cell: cell => <CellItem item={cell?.row?.original} />,
@@ -29,18 +40,7 @@ export function InventoryCardKit(props){
         header: <div style={{textAlign: 'right'}}>{t('inventory.cost')}</div>,
         cell: cell => <CellMoney {...cell} width={80} />,
         meta: { style: { width: 100, minWidth: 100 } }
-      }),
-      columnHelper.accessor('delete', {
-        id: 'delete-col',
-        header: '',
-        cell: ({ row, table }) => (
-          <div className='ac_delete_back'>
-            <DynamicBSIcon name='BsTrashFill' className='ac_delete' onClick={() => table?.options?.meta?.onClickDelete(row)} />
-          </div>
-        ),
-        enableSorting: false,
-        meta: { style: { width: 40 } }
-      }),
+      })
     ]);
     return () => {};
   }, [i18n?.language]);
@@ -88,7 +88,7 @@ export function InventoryCardKit(props){
   const tableInstance = useReactTable({
     data, columns,
     state: { sorting },
-    initialState: { pagination: { pageIndex: 0, pageSize: 25 } },
+    initialState: { pagination: { pageIndex: 0, pageSize: 2 } },
     autoResetPageIndex: false,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
@@ -113,7 +113,6 @@ export function InventoryCardKit(props){
         </div>
         <Insert {...selectProps} />
         <div className={classPage}>
-          <Pagination {...tableProps} />
           <p className='ac_page_total'>{t('inventory.total_cost')}: <Money value={total} fontSize={11} /></p>
         </div>
       </>}

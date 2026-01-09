@@ -60,7 +60,7 @@ export function ButtonRowConfirm(props){
     <div className={isModal ? 'a_btn_row' : 'invt_btn_row'} id={id}>
       {open && <Confirm {...confirmProps} />}
       {open1 && <Warning {...warningProps} />}
-      {show && <DynamicBSIcon className='a_btn_delete1' name='BsTrash' onClick={onDelete} />}
+      {show && <DynamicBSIcon className='a_btn_delete' name='BsTrash' onClick={onDelete} />}
       <div style={{flex: 1}} />
       <Button className={isModal ? 'a_btn' : 'invt_btn'} text={t(text1 ?? 'page.cancel')} onClick={onClickCancel} />
       {!noSave && <Button className={isModal ? 'a_btn' : 'invt_btn'} id={isModal ? 'a_btn_save' : 'invt_btn_save'}
