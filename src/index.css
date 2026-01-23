@@ -306,11 +306,7 @@ p {
 
 .page_back {
   background-color: var(--root-color);
-  border-radius: var(--radius);
-  /* box-shadow: 0px 2px 5px rgba(0,0,0,.15); */
-  padding: var(--page-padding);
-  max-width: 1300px;
-  border: 1px solid var(--border1-color);
+  /* max-width: 1300px; */
 }
 
 #page_back2 {
@@ -329,14 +325,13 @@ p {
   flex-flow: column;
   position: relative;
   overflow-y: scroll;
-  padding-top: 7px;
+  gap: 10px;
 }
 
 .ih_header {
   display: flex;
   flex-flow: row;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 #ih_large .ih_header2, #ih_large .ih_header2_wrap {
@@ -416,6 +411,23 @@ p {
   color: var(--text-color);
   font-size: var(--text-font-size);
   margin: 10px 0 0 0;
+}
+
+.ih_btn {
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: var(--button2-font-size);
+  font-weight: 500;
+  margin-left: 5px;
+  padding: 3px 5px;
+}
+
+.ih_btn:hover {
+  background-color: var(--back-color);
+  cursor: pointer;
+  border-radius: var(--radius);
 }
 
 #ih_large .ih_btn {
@@ -692,7 +704,10 @@ p {
 .table_link {
   color: var(--link-color);
   font-weight: 500;
-  font-size: var(--table-cell-font-size);
+  font-size: var(--item-font);
+}
+.table_link:hover {
+  cursor: pointer;
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
@@ -723,7 +738,7 @@ p {
 }
 
 .m_title_icon {
-  color: var(--tag2-color);
+  color: var(--tag3-color);
   width: 26px;
   height: 26px;
   margin-right: 10px;
@@ -762,6 +777,12 @@ p {
 .select_lbl {
   color: var(--text2-color);
   font-size: var(--picker-label-font-size);
+  font-weight: 450;
+  margin: 0 0 3px 0;
+}
+.title_select_lbl {
+  color: var(--text2-color);
+  font-size: var(--picker-input-font-size);
   font-weight: 450;
   margin: 0 0 3px 0;
 }

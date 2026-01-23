@@ -9,7 +9,7 @@ export function Button(props){
   const { loading, type, className, id, text, disabled, onClick } = props;
 
   return (
-    <button type={type} className={className} id={id} disabled={loading || disabled} onClick={onClick}>
+    <button type={type} className={className ?? 'ih_btn'} id={id} disabled={loading || disabled} onClick={onClick}>
       {loading ? <Loader className='l_loader' color='#fff' /> : text}
     </button>
   );

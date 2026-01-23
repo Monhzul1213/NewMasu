@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Select } from "antd";
 import { useSelector } from "react-redux";
 import CurrencyInput from "react-currency-input-field";
+import { Date } from "./Date";
+import moment from "moment";
 
 const { Option } = Select;
 
@@ -100,7 +102,7 @@ export function CellQty(props){
 }
 
 export function CellSelect(props){
-  const { width, disabled, data, s_value, s_descr, getValue, row: { index }, column: { id }, table } = props;
+  const { width, disabled, data, s_value, s_descr, getValue, row: { index }, column: { id }, table, placeholder } = props;
   const initialValue = getValue();
   const [value, setValue] = useState(initialValue);
 
@@ -126,6 +128,7 @@ export function CellSelect(props){
         disabled={table?.options?.meta?.disabled || disabled}
         filterOption={(input, option) => option.children?.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         value={value}
+        placeholder={placeholder}
         onChange={onChange}>
         {data?.map(renderItem)}
       </Select>
@@ -176,6 +179,41 @@ export function CellInput(props){
       disabled={notEditable} />
   );
 }
+
+export const CellDate = (props) => {
+  const { cellID, disabled, minWidth, width, getValue, row: { index, original }, column: { id, columnDef: { meta } } } = props;
+  const initialValue = getValue();
+  const [date, setDate] = useState(moment(initialValue));
+
+  useEffect(() => {    
+    setDate(initialValue ? moment(initialValue) : moment());
+  }, [initialValue]);
+
+  const onBlur = (e) => {
+    updateMyData(index, id, date ? date.format("YYYY.MM.DD") : null, e);
+  };
+
+  const onKeyDown = (e) => {
+    if (e?.key?.toLowerCase() === "enter") {
+      updateMyData(index, id, date ? date.format("YYYY.MM.DD") : null, e);
+    }
+  };
+
+  const dateProps = {
+    value: { value: date },
+    setValue: (v) => setDate(v.value), 
+    inRow: true, isPad: true,
+    disabledDate: meta?.disabledDate,
+    className: "item_cell_date",
+    onBlur,
+    onKeyDown,
+    disabled, 
+    id: cellID,
+    suffixIcon: null
+  };
+
+  return <Date {...dateProps} />;
+};
 
 export function CellItem(props){
   const { item, label } = props;

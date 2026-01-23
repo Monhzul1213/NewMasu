@@ -100,6 +100,7 @@ export function Menu(){
     getItem(t('menu.inventory'), '/inventory', <img src={product} alt='product' />, [
       getItem(t('menu.invt_list'), '/inventory/invt_list', null, null, null, msRole?.webManageItem !== 'Y'),
       getItem(t('menu.invt_category'), '/inventory/invt_category', null, null, null, msRole?.webManageItem !== 'Y'),
+      getItem(t('menu.customer'), '/customer/customer', null, null, null, msRole?.webManageCustomer !== 'Y'),
     ]),
   ];
 

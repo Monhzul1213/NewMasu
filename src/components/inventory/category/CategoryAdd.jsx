@@ -95,7 +95,7 @@ export function CategoryAdd(props){
   const renderItem = (item, index) => {
     const selected = item?.value === icon;
     const height = ((bounds?.width ?? 360) - 70) / 5;
-    const style = { width: height, height: height, borderColor: selected ? 'var(--tag2-color)' : 'transparent' };
+    const style = { width: height, height: height, borderColor: selected ? 'var(--tag3-color)' : 'transparent' };
     return (
       <div key={index} className='color_btn' style={style} onClick={() => setIcon(item?.value)}>
         <img src={item?.icon} className={selected ? 'color_btn_active' : 'color_btn_icon'} alt={'icon' + (item?.value)} />

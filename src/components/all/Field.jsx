@@ -7,12 +7,12 @@ import { DynamicTBIcon, DynamicMDIcon, DynamicAIIcon } from './DynamicIcon';
 import { Money } from './Money';
 
 export function ModalTitle(props){
-  const { icon, title, isMD, className } = props;
+  const { icon, title, isMD, className, style } = props;
 
   const iconProps = { className: 'm_title_icon', name: icon };
 
   return (
-    <div className='m_title_row'>
+    <div className='m_title_row' style={style}>
       {!icon ? null : isMD ? <DynamicMDIcon {...iconProps} /> : <DynamicTBIcon {...iconProps} />}
       <p className={className ? className : 'm_title'}>{title}</p>
     </div>

@@ -1,0 +1,38 @@
+@import './color.css';
+
+
+.rp_list_search_back1 {
+  position: absolute;
+  bottom: 2px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,.15);
+  background-color: var(--root-color);
+  right: 0;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  border-radius: var(--radius);
+}
+
+.sub_title{
+  margin: 10px 0 0 10px;
+}
+
+.sub_row1{
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 0px;
+}
+
+.sub_row_label, .sub_row_value {
+  color: var(--text-color);
+  font-size: var(--sub-font-size);
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0 0 10px 0;
+}
+
+.row_between {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}

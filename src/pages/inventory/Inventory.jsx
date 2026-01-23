@@ -102,10 +102,10 @@ export function Inventory(){
           (b?.msInventory?.viewPriority ?? 0)
       );
       sortedList?.forEach(item => {
-        let margin = +((item.msInventory.price - item.msInventory.cost) / (item.msInventory.price ? item.msInventory.price : 1) * 100).toFixed(2);
+        let margin = +((item.msInventory.price - item.msInventory.cost) / (item.msInventory.cost ? item.msInventory.cost : 1) * 100).toFixed(2);
         item.msInventory.margin = (isNaN(margin) ? 0 : margin) + '%';
         item?.msInventoryVariants?.forEach(vart => {
-          let margin = +((vart.price - vart.cost) / (vart.price ? vart.price : 1) * 100).toFixed(2);
+          let margin = +((vart.price - vart.cost) / (vart.cost ? vart.cost : 1) * 100).toFixed(2);
           vart.margin = (isNaN(margin) ? 0 : margin) + '%';
         });
       });
@@ -175,7 +175,7 @@ export function Inventory(){
       <Overlay loading={loading}>
         {error && <Error1 error={error} />}
         {noData && <Empty2 icon='MdOutlineShoppingBasket' type='inventory' onClickAdd={onClickAdd} onClickImport={onClickImport} />}
-        <div ref={ref} className='page_back1' style={style}>
+        <div ref={ref} className='page_back' style={style}>
           <InventoryFilter {...filterProps} cats={categories} vendors={vendors}/>
           <InventoryList {...listProps} />
         </div>

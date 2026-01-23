@@ -60,7 +60,8 @@
   height: var(--cat-width);
   width: var(--cat-width);
   margin-left: 20px;
-  filter: invert(35%) sepia(66%) saturate(475%) hue-rotate(131deg) brightness(95%) contrast(98%);
+  /* filter: invert(35%) sepia(66%) saturate(475%) hue-rotate(131deg) brightness(95%) contrast(98%); */
+  filter: invert(28%) sepia(84%) saturate(3639%) hue-rotate(264deg) brightness(91%) contrast(102%);
 }
 
 .cat_side {
@@ -112,7 +113,7 @@
 .color_btn_active {
   width: calc(100% - 12px);
   height: calc(100% - 12px);
-  filter: invert(35%) sepia(66%) saturate(475%) hue-rotate(131deg) brightness(95%) contrast(98%);
+  filter: invert(28%) sepia(84%) saturate(3639%) hue-rotate(264deg) brightness(91%) contrast(102%);
 }
 
 .i_check_row {

@@ -61,3 +61,56 @@ const exportToExcel = () => {
 
   return (<Button className='ih_btn' text={text} onClick={exportToExcel} />);
 }
+
+export function ExportExcelLink(props){
+  const { excelData, columns, excelName, text, width } = props;
+  const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+  const fileExtension = ".xlsx";
+
+const exportToExcel = () => {
+
+  const header = columns
+    ?.filter(c => c.exLabel)
+    .map(c => c.exLabel);
+
+  const body = excelData?.map(item =>
+    columns
+      ?.filter(c => c.exLabel)
+      .map(col => {
+        const keys = col.accessorKey?.split('.');
+        return keys?.length === 2
+          ? item?.[keys[0]]?.[keys[1]]
+          : item?.[col.accessorKey];
+      })
+  );
+
+  const sheetData = [header, ...body];
+
+  const ws = XLSX.utils.aoa_to_sheet(sheetData);
+
+  ws['!cols'] = width;
+
+  header.forEach((_, index) => {
+    const cellAddress = XLSX.utils.encode_cell({ r: 0, c: index });
+    ws[cellAddress].s = {
+      font: { bold: true },
+      alignment: { horizontal: "center" }
+    };
+  });
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "data");
+
+  const excelBuffer = XLSX.write(wb, {
+    bookType: "xlsx",
+    type: "array",
+    cellStyles: true
+  });
+
+  const data = new Blob([excelBuffer], { type: fileType });
+  FileSaver.saveAs(data, excelName + fileExtension);
+};
+
+
+  return (<a className='ii_link' text={text} onClick={exportToExcel} >{text}</a>);
+}

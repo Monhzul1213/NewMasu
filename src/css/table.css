@@ -187,7 +187,7 @@ tfoot > tr > th {
 }
 
 .ed_select_back {
-  border-bottom: 1px solid var(--root-color);
+  border-bottom: 1px solid #d2d2d2;
 }
 
 .ed_select_back:focus-within {
@@ -195,7 +195,16 @@ tfoot > tr > th {
 }
 
 .ed_select_back .ant-select-single {
-  height: 19px;
+  height: 15px;
+}
+.ed_select_back .ant-select-arrow{
+  font-size: 10px;
+}
+.ed_select_back .ant-select-single .ant-select-selector .ant-select-selection-item{
+  line-height: 18px;
+}
+.ed_select_back .ant-select-single .ant-select-selector .ant-select-selection-placeholder{
+  line-height: 18px;
 }
 .table_row:hover .ed_select_back, .table_row_selected:hover .ed_select_back, .table_row:hover #hide_border, .table_row_selected:hover #hide_border {
   border-color: var(--text4-color);
@@ -208,7 +217,7 @@ tfoot > tr > th {
   font-size: var(--table-cell-font-size);
   background-color: transparent;
   padding: 0;
-  height: 19px;
+  height: 15px;
 }
 
 .ed_select .ant-select-selector {
@@ -373,6 +382,22 @@ tfoot > tr > th {
   padding-right: 5px;
   align-items: center;
 }
-.ed_select_back .ant-select-single .ant-select-selector .ant-select-selection-item{
-  line-height: 18px;
+
+.item_cell_date {
+  border: none;
+  box-shadow: none;
+}
+
+.item_cell_date.ant-picker {
+  padding: 0;
+  background-color: transparent;
+}
+
+.item_cell_date.ant-picker:hover {
+  background-color: transparent;
+}
+
+.item_cell_date .ant-picker-input > input {
+  color: var(--text-color);
+  font-size: var(--item-font);
 }

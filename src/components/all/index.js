@@ -24,3 +24,4 @@ export * from './Cell';
 export * from './Validate';
 export * from './Insert';
 export * from './Chart';
+export * from './Drawer';

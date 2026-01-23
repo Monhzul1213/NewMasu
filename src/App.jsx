@@ -9,7 +9,8 @@ import { setIsLoggedIn } from './services/temp.slice'
 import { Home } from './pages/home';
 import { Loading, Login, Recovery, Signup } from './pages/login'
 import { Header, Menu } from './components/menu';
-import { Inventory } from './pages/inventory';
+import { Category, Inventory, InventoryImport } from './pages/inventory';
+import { Customer } from './pages/customer';
 
 export default function App() {
   const loggedIn = useSelector(state => state.temp?.loggedIn);
@@ -59,6 +60,9 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='*' element={<Home />} />
     <Route path='/home' element={<Home />} />
     <Route path='/inventory/invt_list' element={<Inventory />} />
+    <Route path='/inventory/invt_list/invt_import' element={<InventoryImport />} />
+    <Route path='/inventory/invt_category' element={<Category />} />
+    <Route path='/customer/customer' element={<Customer />} />
   </Route>
 ));
 

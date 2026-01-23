@@ -31,7 +31,7 @@ export function PlainRange(props){
 }
 
 export function Date(props){
-  const { inRow, value, setValue, label, setError, className, disabled, disabledDate, setEdited, allowClear, placeholder, classBack } = props;
+  const { inRow, value, setValue, label, setError, className, disabled, disabledDate, setEdited, allowClear, placeholder, classBack, suffixIcon } = props;
 
   const handleChange = e => {
     setValue({ value: e });
@@ -40,12 +40,12 @@ export function Date(props){
   }
 
   const style = value?.error ? { borderColor: '#e41051', color: '#e41051' } : {};
-  const backStyle = inRow ? {...style, ...{ margin: '0 0 0 0' }} : style;
+  const backStyle = inRow ? {...style, ...{ margin: '0 0 0 0', padding: '0 0 0 0' }} : style;
 
   return (
     <div style={inRow ? { flex: 1 } : {}}>
       <div className= {classBack ?? 'select_back'} style={backStyle}>
-        <p className='select_lbl' style={style}>{label}</p>
+        {label &&<p className='select_lbl' style={style}>{label}</p>}
         <MyDatePicker
           className={className ?? 'm_date'}
           value={value?.value}
@@ -54,7 +54,8 @@ export function Date(props){
           placeholder={placeholder ?? ''}
           allowClear={allowClear ?? false}
           disabledDate={disabledDate}
-          onChange={handleChange} />
+          onChange={handleChange} 
+          suffixIcon={suffixIcon}/>
       </div>
       {value?.error && <p className='f_input_error'>{label} {value?.error}</p>}
     </div>

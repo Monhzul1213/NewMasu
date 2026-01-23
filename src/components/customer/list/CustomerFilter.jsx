@@ -21,9 +21,9 @@ export function CustomerFilter(props){
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(pgWidth >= 1240) setWidth({ search: 400, picker: 162 });
-    else if(pgWidth < 1240 && pgWidth >= 1090) setWidth({ search: pgWidth - 840, picker: 162 });
-    else if(pgWidth < 1090 && pgWidth >= 766) setWidth({ search: pgWidth - 516, picker: 162 });
+    if(pgWidth >= 1240) setWidth({ search: 380, picker: 162 });
+    else if(pgWidth < 1240 && pgWidth >= 1090) setWidth({ search: pgWidth - 860, picker: 162 });
+    else if(pgWidth < 1090 && pgWidth >= 766) setWidth({ search: pgWidth - 520, picker: 162 });
     else if(pgWidth < 766 && pgWidth >= 594) setWidth({ search: pgWidth - 344, picker: 162 });
     else if(pgWidth < 594 && pgWidth >= 422) setWidth({ search: pgWidth - 172, picker: 162 });
     else if(pgWidth < 422) setWidth({ search: pgWidth, picker: (pgWidth - 10) / 2 });
@@ -99,14 +99,16 @@ export function CustomerFilter(props){
 
   const id = pgWidth > 1090 ? 'ih_large' : 'ih_small';
   const addProps = { show, onClickAdd, onClickDelete };
-  const selectProps = { classBack: 'cou_select_back1', classLabel: 'ih_select_lbl', className: 'filter_select', bStyle: { width: width?.picker } };
+  const selectProps = { classBack: 'filter_select_back', classLabel: 'ih_select_lbl', className: 'filter_select', bStyle: { width: width?.picker } };
+  const excelWidth = [{ wpx: 60 }, { wpx: 150 }, { wpx: 70 }, { wpx: 70 }, { wpx: 100 }, { wpx: 100 }, { wpx: 110 }, { wpx: 170 }, 
+    { wpx: 110 }, { wpx: 80 }, { wpx: 80 }, { wpx: 120 }, { wpx: 80 }, { wpx: 100 }, { wpx: 100 }];
 
   return (
     <div id={id} style={{position: 'relative'}}>
-      <div className='ih_header1'>
+      <div className='ih_header'>
         <ButtonRowAdd type='customer' {...addProps} />
         {!show && <Button className='ih_btn' text={t('page.import')} onClick={onClickImport} />}
-        {!show && <ExportExcel text={t('page.export')} excelData={data} columns={columns} excelName={t('header./customer')} />}
+        {!show && <ExportExcel text={t('page.export')} excelData={data} columns={columns} excelName={t('header./customer')} width={excelWidth} />}
       </div>
       <div className="filter_wrap">
         <Search1 search={search} setSearch={setSearch} handleEnter={handleEnter} width={width?.search} />
