@@ -4,7 +4,7 @@ import { ButtonRowAdd, CheckAll, Pagination1 } from "../../all";
 import { CategoryItems } from "./CategoryItems";
 
 export function CategoryList(props){
-  const { show, setShow, checked, setChecked, data, setData, selected, setSelected, onClickAdd, onClickDelete, setLoading } = props;
+  const { show, setShow, checked, setChecked, data, setData, selected, setSelected, onClickAdd, onClickDelete, setLoading, error } = props;
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(25);
 
@@ -42,7 +42,7 @@ export function CategoryList(props){
       <ButtonRowAdd type='category' {...addProps} />
       <div className="gap" />
       <CheckAll type='category' {...checkProps} />
-      <div className='list_back1' id='paging'>
+      <div className={error ? 'list_back2' : 'list_back1'} id='paging'>
         <CategoryItems {...itemProps} data={data?.slice(start, end)} onClick={onClickAdd} />
       </div>
       <Pagination1 {...pageProps} />

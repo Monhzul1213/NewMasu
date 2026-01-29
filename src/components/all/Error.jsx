@@ -28,10 +28,10 @@ export function Error1(props){
 }
 
 export function Memo(props){
-  const { text } = props;
+  const { text, style } = props;
 
   return (
-    <div className='memo_back'>
+    <div className='memo_back' style={style}>
       <DynamicAIIcon name='AiOutlineInfoCircle' className='memo_icon'  />
       <p className='memo_text'>{text}</p>
     </div>

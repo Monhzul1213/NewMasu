@@ -120,10 +120,6 @@ export function Inventory(){
   }
 
   const onClickImport = () => navigate('invt_import');
-//   const onClickAdd = row => {
-//     if(row) navigate({ pathname: 'invt_add', search: createSearchParams({ invtId: row?.original?.msInventory?.invtId }).toString() });
-//     else navigate({ pathname: 'invt_add' });
-//   }
 
   const onClickDelete = async () => {
     let toDelete = [];
@@ -142,12 +138,12 @@ export function Inventory(){
   const updateInventory = async (data, isEdit, isExpand) => {
     if(!isEdit) setLoading(true);
     setError(null);
-    const response = await dispatch(sendRequest(user, token, 'Inventory/UInvCustom', data));
+    const response = await dispatch(sendRequest(user, token, 'Inventory/UInvCustom', data));    
     setLoading(false);
     if(!response?.error){
       toast.success(t('inventory.add_success'));
       onSearch(filter, isEdit || isExpand);
-    } else if(response?.error && !isEdit) setError(response?.error);
+    } else if(response?.error || !isEdit) setError(response?.error);
     return response;
   }
 
@@ -164,7 +160,7 @@ export function Inventory(){
 
   const filterProps = { pgWidth, show, columns, data, onClickAdd, onClickDelete, onClickImport, onSearch, setError };
   const listProps = { pgWidth, data, columns, setColumns, rowSelection, setRowSelection, setShow, updateInventory, categories, onClickAdd, filtering,
-    pageInfo, getInventory, vendors, setData };
+    pageInfo, getInventory, vendors, setData, error };
   const noData = !data?.length && !filtering;
   const style = noData ? { display: 'none' } : null;
   const modalProps = { visible, closeModal, selected };

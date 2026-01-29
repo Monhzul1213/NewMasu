@@ -25,6 +25,10 @@
   max-height: calc(100vh - var(--header1-height) - var(--page-padding) * 2 - var(--pg-height) - var(--filter-height) - 15px - 44px - 5px);
 }
 
+.list_back2 {
+  overflow-y: scroll;
+  max-height: calc(100vh - var(--header1-height) - var(--page-padding) * 2 - var(--pg-height) - var(--filter-height) - 15px - 44px - 35px);
+}
 .cat_item {
   display: flex;
   flex-flow: row;
@@ -460,7 +464,7 @@
 
 .ac_delete {
   color: var(--text4-color);
-  font-size: var(--title-font);
+  font-size: var(--title-font-size);
   text-align: center;
   padding: 2px 0;
 }
@@ -730,4 +734,47 @@
   width: 100%;
   border: solid 1px var(--back-color);
   border-radius: 5px;
+}
+
+#mo_large {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#mo_small {
+  display: flex;
+  flex-flow: column;
+}
+
+#mo_large .mo_select_back {
+  width: 180px;
+}
+
+#mo_small .mo_select_back {
+  margin-top: 10px;
+  width: 165px;
+}
+
+.mo_select {
+  width: 100%;
+}
+
+.mo_select .ant-select-selector {
+  box-shadow: none !important;
+}
+
+.mo_select .ant-select-arrow {
+  color: var(--text4-color);
+  font-size: var(--p-input-font);
+}
+
+.mo_select.ant-select .ant-select-selector {
+  box-shadow: none;
+  border: none;
+  color: var(--text-color);
+  font-size: var(--value-font);
+  background-color: var(--back-color);
+  border-radius: var(--radius);
 }

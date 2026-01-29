@@ -101,6 +101,7 @@ export function Menu(){
       getItem(t('menu.invt_list'), '/inventory/invt_list', null, null, null, msRole?.webManageItem !== 'Y'),
       getItem(t('menu.invt_category'), '/inventory/invt_category', null, null, null, msRole?.webManageItem !== 'Y'),
       getItem(t('menu.customer'), '/customer/customer', null, null, null, msRole?.webManageCustomer !== 'Y'),
+      getItem(t('menu.modifier'), '/modifier', null, null, null, msRole?.webManageCustomer !== 'Y'),
     ]),
   ];
 

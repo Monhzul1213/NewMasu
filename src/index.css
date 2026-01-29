@@ -201,7 +201,7 @@ p {
   height: 20px;
   border-radius: 50%;
   color: var(--danger-color);
-  padding: 6px;
+  /* padding: 6px; */
 }
 
 .a_btn_delete1 {
@@ -1035,6 +1035,10 @@ p {
 
 #mo_ac_btns {
   max-width: 600px;
+}
+
+#add_bottom_row_mod{
+    max-width: 560px;
 }
 
 .invt_btn {

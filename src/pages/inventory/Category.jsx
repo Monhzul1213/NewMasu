@@ -69,7 +69,7 @@ export function Category(){
     if(toGet) getData();
   }
 
-  const listProps = { show, setShow, checked, setChecked, data, setData, selected, setSelected, onClickAdd, setLoading, onClickDelete };
+  const listProps = { show, setShow, checked, setChecked, data, setData, selected, setSelected, onClickAdd, setLoading, onClickDelete, error };
   const addProps = { visible, closeModal, selected: item, useConfig };
 
   return (

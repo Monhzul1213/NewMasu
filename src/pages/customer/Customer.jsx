@@ -125,7 +125,7 @@ export function Customer(){
   const onDone = async () => setVisible1(false);
 
   const filterProps = { pgWidth, show, data, columns, setError, onClickAdd, onClickDelete, onClickImport, getData };
-  const listProps = { pgWidth, data, columns, setColumns, rowSelection, setRowSelection, setShow, onClickAdd, setError, onSearch: getData };
+  const listProps = { pgWidth, data, columns, setColumns, rowSelection, setRowSelection, setShow, onClickAdd, setError, onSearch: getData, error };
   const addProps = { visible, selected, branch, allBranch, closeModal };
   const noData = !data?.length && !filtering;
   const style = noData ? { display: 'none' } : null;

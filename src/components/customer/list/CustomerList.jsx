@@ -9,7 +9,7 @@ import { getList } from "../../../services";
 import moment from "moment";
 
 export function CustomerList(props){
-  const { pgWidth, data, columns, setColumns, setShow, onClickAdd, rowSelection, setRowSelection, setError, onSearch} = props;
+  const { pgWidth, data, columns, setColumns, setShow, onClickAdd, rowSelection, setRowSelection, setError, onSearch, error} = props;
   const { t, i18n } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
@@ -22,11 +22,12 @@ export function CustomerList(props){
 
   useEffect(() => {
     let height1 = 'calc(100vh - var(--header1-height) - var(--page-padding) * 2', height2 = '';
-    if(pgWidth >= 1090) height2 = ' - var(--filter-height)';
+    if(pgWidth >= 1200) height2 = ' - var(--filter-height)';
+    if(pgWidth < 1200 && pgWidth >= 1090) height2 = ' - var(--filter-height) * 2 - 10px';
     if(pgWidth < 1090 && pgWidth >= 766) height2 = ' - var(--filter-height) * 2 - 10px';
     if(pgWidth < 766 && pgWidth >= 422) height2 = ' - var(--filter-height) * 3 - 20px';
-    if(pgWidth < 422) height2 = ' - var(--filter-height) * 4 - 30px';
-    setMaxHeight(height1 + height2 + ' - 10px)');
+    if(pgWidth < 422) height2 = ' - var(--filter-height) * 4 - 40px';
+    setMaxHeight(height1 + height2 + ' - 10px' + (error ? ' - 30px)' : ')'));    
     return () => {};
   }, [pgWidth]);
 

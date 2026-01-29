@@ -10,7 +10,7 @@ import { InventoryImage } from "./InventoryImage";
 
 export function InventoryList(props){
   const { pgWidth, data, columns, setColumns, rowSelection, setRowSelection, setShow, updateInventory, categories, onClickAdd, filtering, pageInfo, getInventory,
-    vendors, setData} = props;
+    vendors, setData, error} = props;
   const { t, i18n } = useTranslation();
   const [expanded, setExpanded] = useState({});
   // const [sorting, setSorting] = useState([{ id: 'msInventory_viewPriority', desc: false }]);
@@ -23,11 +23,12 @@ export function InventoryList(props){
 
   useEffect(() => {
     let height1 = 'calc(100vh - var(--header1-height) - var(--page-padding) * 2', height2 = '';
-    if(pgWidth >= 1090) height2 = ' - var(--filter-height)';
-    if(pgWidth < 1090 && pgWidth >= 766) height2 = ' - var(--filter-height) * 2 - 10px';
-    if(pgWidth < 766 && pgWidth >= 422) height2 = ' - var(--filter-height) * 3 - 20px';
-    if(pgWidth < 422) height2 = ' - var(--filter-height) * 4 - 30px';
-    setMaxHeight(height1 + height2 + ' - 57px)');
+    if(pgWidth >= 1200) height2 = ' - var(--filter-height) * 2 - 7px';
+    if(pgWidth < 1200 && pgWidth >= 1090) height2 = ' - var(--filter-height) * 2 - 8px';
+    if(pgWidth < 1090 && pgWidth >= 766) height2 = ' - var(--filter-height) * 2 - 50px';
+    if(pgWidth < 766 && pgWidth >= 422) height2 = ' - var(--filter-height) * 3 - 57px';
+    if(pgWidth < 422) height2 = ' - var(--filter-height) * 4 - 66px';
+    setMaxHeight(height1 + height2 + ' - 10px' + (error ? ' - 30px)' : ')'));    
     return () => {};
   }, [pgWidth]);
 
