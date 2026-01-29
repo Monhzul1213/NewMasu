@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { getServiceBar } from "../../../services";
 import { Button, ButtonRowAdd, ExportExcel, PlainSelect, Search1 } from "../../all";
+import CustomerReceivable from "./CustomerReceivable";
 
 export function CustomerFilter(props){
   const { pgWidth, show, data, columns, setError, onClickAdd, onClickDelete, onClickImport, getData } = props;
@@ -18,15 +19,16 @@ export function CustomerFilter(props){
   const [isArs, setIsArs] = useState([]);
   const [search, setSearch] = useState('');
   const [width, setWidth] = useState({ });
+  const [visibleReceivable, setVisibleReceivable] = useState(false);  
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if(pgWidth >= 1240) setWidth({ search: 380, picker: 162 });
-    else if(pgWidth < 1240 && pgWidth >= 1090) setWidth({ search: pgWidth - 860, picker: 162 });
-    else if(pgWidth < 1090 && pgWidth >= 766) setWidth({ search: pgWidth - 520, picker: 162 });
+  useEffect(() => {    
+    if(pgWidth >= 1364) setWidth({ search: 350, picker: 162 });
+    else if(pgWidth < 1364 && pgWidth >= 1200) setWidth({ search: pgWidth - 1050, picker: 162 });
+    else if(pgWidth < 1200 && pgWidth >= 766) setWidth({ search: pgWidth - 520, picker: 162 });
     else if(pgWidth < 766 && pgWidth >= 594) setWidth({ search: pgWidth - 344, picker: 162 });
     else if(pgWidth < 594 && pgWidth >= 422) setWidth({ search: pgWidth - 172, picker: 162 });
-    else if(pgWidth < 422) setWidth({ search: pgWidth, picker: (pgWidth - 10) / 2 });
+    else if(pgWidth < 422) setWidth({ search: pgWidth, picker: (pgWidth - 10) / 2 });    
     return () => {};
   }, [pgWidth]);
 
@@ -97,7 +99,17 @@ export function CustomerFilter(props){
     getData(query);
   }
 
-  const id = pgWidth > 1090 ? 'ih_large' : 'ih_small';
+  const onClickReceivable = () => {
+    setVisibleReceivable(true);
+  };
+
+  const closeModal = e => {
+    e?.preventDefault();
+    setVisibleReceivable(false);
+    getData();
+  }
+
+  const id = pgWidth > 1200 ? 'ih_large' : 'ih_small';
   const addProps = { show, onClickAdd, onClickDelete };
   const selectProps = { classBack: 'filter_select_back', classLabel: 'ih_select_lbl', className: 'filter_select', bStyle: { width: width?.picker } };
   const excelWidth = [{ wpx: 60 }, { wpx: 150 }, { wpx: 70 }, { wpx: 70 }, { wpx: 100 }, { wpx: 100 }, { wpx: 110 }, { wpx: 170 }, 
@@ -105,10 +117,14 @@ export function CustomerFilter(props){
 
   return (
     <div id={id} style={{position: 'relative'}}>
+       {visibleReceivable && <CustomerReceivable 
+                  visible={visibleReceivable} 
+                  closeModal={closeModal}/>}
       <div className='ih_header'>
         <ButtonRowAdd type='customer' {...addProps} />
         {!show && <Button className='ih_btn' text={t('page.import')} onClick={onClickImport} />}
         {!show && <ExportExcel text={t('page.export')} excelData={data} columns={columns} excelName={t('header./customer')} width={excelWidth} />}
+        {!show && <Button text={t('customer.receivable_calc')} onClick={onClickReceivable}/>}
       </div>
       <div className="filter_wrap">
         <Search1 search={search} setSearch={setSearch} handleEnter={handleEnter} width={width?.search} />

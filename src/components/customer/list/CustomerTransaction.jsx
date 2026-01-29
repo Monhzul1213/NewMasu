@@ -8,7 +8,7 @@ import moment from 'moment';
 import { getList } from "../../../services";
 import { domain, encrypt } from "../../../helpers";
 import { Empty1, Error, ExportExcel, Overlay, Money, PlainRange, TableRowResize, Button, DynamicAIIcon } from "../../all";
-import ReceivableCalc from "./ReceivableCalc";
+import CustomerReceivable from "./CustomerReceivable";
 
 export function CustomerTransaction(props){
   const { visible, setVisible, selected, selectedDate, txnType, onSearch } = props;
@@ -88,7 +88,7 @@ export function CustomerTransaction(props){
     <Modal title={null} footer={null} closable={false} open={visible} centered={true} width={700}>
       <Overlay loading={loading}>
         {visibleReceivable && 
-        <ReceivableCalc 
+        <CustomerReceivable 
             visible={visibleReceivable} 
             closeModal={closeModal} 
             onSearch={getData}

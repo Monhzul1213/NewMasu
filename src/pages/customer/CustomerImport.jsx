@@ -23,7 +23,7 @@ export function CustomerImport(){
     return () => {};
   }, []);
 
-  const onClickCancel = () => navigate('/customer');
+  const onClickCancel = () => navigate('/customer/customer');
 
   const onClickSave = async () => {
     setError(null);

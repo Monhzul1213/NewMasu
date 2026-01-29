@@ -8,8 +8,9 @@ import moment from "moment";
 import { Button, ButtonRow, Overlay, ModalTitle, Error1, ExportExcel, TableRowResize, ExportExcelLink, Money, CellMoney, CellSelect, CellInput, CellDate, DynamicBSIcon} from "../../all";
 import { getList, sendRequest } from "../../../services";
 import { createColumnHelper, getCoreRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
+import { CustomerSelectItem } from "./SelectItem";
 
-export default function ReceivableCalc(props) {
+export default function CustomerReceivable(props) {
     const {visible, closeModal, onSearch, data, disabled, selected, date} = props;
     const [columns, setColumns] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -282,17 +283,18 @@ export function CustomerSelect(props){
     meta: { updateMyData: updateData, newItem }
   });
   const tableProps = { tableInstance };
-//   const selectProps = { search, setSearch, data, setData, newItem , setEdited, disabled};
+  const selectProps = { search, setSearch, data, setData, newItem , setEdited, disabled};
 
   return (
     <div style={{marginTop: 10}}>
       {label && <p className='title_select_lbl' style={{fontSize: 13, marginTop: 20, color: 'var(--tex1-color)', fontWeight: 500, borderBottom: '1px solid var(--line-color)'}}>{label}</p>}
       <div style={{overflow: 'scroll'}} >
+
         <div className='table_scroll' id='paging' style={{marginTop: 10, overflowY: 'scroll', maxHeight, minWidth : 700}}>
           <TableRowResize {...tableProps} />
         </div>
       </div>
-      {/* <CustSelect {...selectProps}/> */}
+      <CustomerSelectItem {...selectProps}/>
     </div>
   )
 }

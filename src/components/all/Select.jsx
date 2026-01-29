@@ -88,11 +88,11 @@ export function CustomSelect(props){
   }
 
   const onDropdownVisibleChange = show => {
-    if(!show) setData && setData([]);
+    // if(!show) setData && setData([]);
   }
 
   const style = value?.error ? { borderColor: '#e41051', color: '#e41051' } : {};
-  const empty = t(text?.length > 3 ? 'page.no_filter' : 'inventory.morethan');
+  // const empty = t(text?.length > 3 ? 'page.no_filter' : 'inventory.morethan');
   
   return (
     <div className={classBack}>
@@ -109,7 +109,7 @@ export function CustomSelect(props){
           loading={loading}
           onOpenChange={onDropdownVisibleChange}
           onFocus={onFocus}
-          notFoundContent={empty}
+          // notFoundContent={empty}
           placeholder={placeholder}>
           {data?.map(renderItem)}
         </AntSelect>
