@@ -94,9 +94,9 @@ export function Menu(){
 
   const items = [
     getItem(t('menu.home'), '/', <img src={home} alt='home' />),
-    // getItem(t('menu.report'), '/report', <img src={report} alt='report' />, [
-    //   getItem(t('menu.report'), '/report/report1'),
-    // ]),
+    getItem(t('menu.report'), '/report', <img src={report} alt='report' />, [
+      getItem(t('menu.report'), '/report/report1'),
+    ]),
     getItem(t('menu.inventory'), '/inventory', <img src={product} alt='product' />, [
       getItem(t('menu.invt_list'), '/inventory/invt_list', null, null, null, msRole?.webManageItem !== 'Y'),
       getItem(t('menu.invt_category'), '/inventory/invt_category', null, null, null, msRole?.webManageItem !== 'Y'),

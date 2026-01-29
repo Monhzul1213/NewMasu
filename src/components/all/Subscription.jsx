@@ -8,7 +8,7 @@ import QRCode from 'react-qr-code';
 // import '../../css/modal.css';
 import { getList, getServiceBarimt, sendRequest } from "../../services";
 import { banks, domain, encrypt, formatNumber, selectSubscription, subContent, subContent1 } from "../../helpers";
-import { image23, image24, qr_holder, star } from "../../assets";
+import { qr_holder, star } from "../../assets";
 import { Overlay } from "./Loader";
 import { DynamicAIIcon, DynamicBSIcon, DynamicMDIcon } from "./DynamicIcon";
 import { Error1 } from "./Error";
@@ -18,6 +18,7 @@ import { Input } from "./Input";
 import { BankSelect } from "./Select";
 import { BankField } from "./Field";
 import { SubscriptionReceipt } from "./SubscriptionReceipt";
+import { image23, image24 } from "../../assets/sub_icons";
 
 export function Subscription(props){
   const { visible, setVisible, noBack, onDone } = props;

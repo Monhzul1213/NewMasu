@@ -29,7 +29,7 @@ export function CustomerList(props){
     if(pgWidth < 422) height2 = ' - var(--filter-height) * 4 - 40px';
     setMaxHeight(height1 + height2 + ' - 10px' + (error ? ' - 30px)' : ')'));    
     return () => {};
-  }, [pgWidth]);
+  }, [pgWidth, error]);
 
   useEffect(() => {
     setColumns([

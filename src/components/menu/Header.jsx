@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 
 import '../../css/menu.css';
-import { image16, image17, image19, image20, image21, image22 } from "../../assets";
+import { image16, image17, image19, image20, image21, image22, image26, image27 } from "../../assets/sub_icons";
 import { getList, logout, setIsLoggedIn } from "../../services";
 import { LoginLanguage } from "../login";
-import { Button, DynamicMDIcon } from "../all";
+import { Button } from "../all";
 
 export function Header(){
   const { i18n, t } = useTranslation();
@@ -45,6 +45,9 @@ export function Header(){
     } else if(subscriptionType === 'STANDARD'){
       setImage(image21);
       setImage2(image19);
+    } else if(subscriptionType === 'PRO'){
+      setImage(image27);
+      setImage2(image26);
     } else {
       setImage(image22);
       setImage2(image20);

@@ -28,9 +28,9 @@ export function InventoryList(props){
     if(pgWidth < 1090 && pgWidth >= 766) height2 = ' - var(--filter-height) * 2 - 50px';
     if(pgWidth < 766 && pgWidth >= 422) height2 = ' - var(--filter-height) * 3 - 57px';
     if(pgWidth < 422) height2 = ' - var(--filter-height) * 4 - 66px';
-    setMaxHeight(height1 + height2 + ' - 10px' + (error ? ' - 30px)' : ')'));    
+    setMaxHeight(height1 + height2 + ' - 10px' + (error ? ' - 30px)' : ')'));        
     return () => {};
-  }, [pgWidth]);
+  }, [pgWidth, error]);
 
   useEffect(() => {
     setColumns([

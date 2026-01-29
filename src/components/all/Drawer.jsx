@@ -30,8 +30,6 @@ export function BillDrawer(props){
   const [visible2, setVisible2] = useState(false);
   const [image, setImage] = useState(null);
   const dispatch = useDispatch();
-
-  console.log(selected);
   
   useEffect(() => {
     if(selected){

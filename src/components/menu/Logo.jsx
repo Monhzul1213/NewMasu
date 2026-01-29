@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setCollapsed } from "../../services";
-import { header_image, image5 } from "../../assets";
+import { collapse, header_image } from "../../assets";
 
 export function Logo(){
   const collapsed = useSelector(state => state.temp.collapsed);
@@ -14,7 +14,7 @@ export function Logo(){
     <div className='menu_img_container'>
       {!collapsed ? <img className='h_logo' src={header_image} alt='header_image'/> : ''}
       <button className='h_icon_btn' onClick={onClick}>
-        <img src={image5} className='h_icon' alt='image5'/>
+        <img src={collapse} className='h_icon' alt='collapse'/>
       </button>
     </div>
   );
